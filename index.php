@@ -14,6 +14,20 @@
 </head>
 <body>
 
+<?php
+session_start(); 
+
+
+
+if (isset($_SESSION['erreur'])) {
+    // Si tu veux avoir un message de succès avec une autre couleur
+    echo '<p class=" bg-red-600 border border-green-500 p-4 text-center">' . $_SESSION['erreur'] . '</p>';
+    unset($_SESSION['erreur']);
+}
+?>
+
+
+
 <form action="./process/process_create_user.php" method="post" class="max-w-xl mx-auto my-auto p-8 bg-white rounded-xl shadow-2xl border border-gray-200">
   <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Se connecter</h2>
 

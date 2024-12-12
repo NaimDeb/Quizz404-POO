@@ -1,7 +1,6 @@
 <?php
-
+session_start();
 require_once '../utils/connect-db.php';
-
 
 if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
 
@@ -14,17 +13,18 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
 
     if ($stmt->fetch()) {
        
-        echo "Le pseudo '$pseudo' est déjà pris.";
+        $_SESSION["erreur"] = "Le pseudo '$pseudo' est déjà pris.";
+        header("Location: ../index.php");
+        exit;
        
     } else {
         
         $stmt = $pdo->prepare("INSERT INTO user (pseudo) VALUES (:pseudo)");
         $stmt->execute(['pseudo' => $pseudo]);
-        echo "Utilisateur créé avec succès !";
+        $_SESSION["erreur"] = "Utilisateur créé avec succès !";
         
     }
 }
- header("Location: ../index.php");
- exit;
+
 
 ?>
