@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizz404</title>
+    <link rel="icon" href="./image/_.ico">
+    <link rel="stylesheet" href="output.css">
 </head>
 <body>
+
+<h1 class="">Test</h1>
     
 </body>
 </html>
