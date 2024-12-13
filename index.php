@@ -1,43 +1,65 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizz404</title>
-    <link rel="icon" href="./image/_.ico">
-    <link rel="stylesheet" href="output.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizz404</title>
+  <link rel="icon" href="./image/_.ico">
+  <link rel="stylesheet" href="output.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-<?php
-session_start(); 
+<body class="h-[100vh] bg-body">
+  <!-- Header Quiz404 -->
+  <header class="flex w-100 justify-around pt-5 items-center opacity-[1]">
 
-
-
-if (isset($_SESSION['erreur'])) {
-    // Si tu veux avoir un message de succès avec une autre couleur
-    echo '<p class=" bg-red-600 border border-green-500 p-4 text-center">' . $_SESSION['erreur'] . '</p>';
-    unset($_SESSION['erreur']);
-}
-?>
+    <div class="w-[9%] h-[70px] shadow-[0_20px_17px_4px_rgba(0,0,0,0.99)] items-center flex justify-center bg-gradient-to-r from-amber-300 to-yellow-600">
+      <a class="text-white font-first-font font-extrabold" href="formulaire.php">Inscription</a>
+    </div>
 
 
+    <div class="w-[50%] shadow-[0_20px_17px_4px_rgba(0,0,0,0.99)] p-5 items-center text-center bg-gradient-to-r from-amber-300 to-yellow-600">
+      <h2 class="text-8xl font-extrabold font-first-font">
+        <span>
+          < 
+        </span>
+        <span>Quiz</span>
+        <span class="text-purple-500">404</span>
+        <span>/></span>
+      </h2>
+    </div>
+    <div class="w-[9%] h-[70px] shadow-[0_20px_17px_4px_rgba(0,0,0,0.99)] items-center flex justify-center bg-gradient-to-r from-amber-300 to-yellow-600">
+      <a class="text-white font-first-font font-extrabold" href="#">Connexion</a>
+    </div>
+  </header>
 
-<form action="./process/process_create_user.php" method="post" class="max-w-xl mx-auto my-auto p-8 bg-white rounded-xl shadow-2xl border border-gray-200">
-  <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Se connecter</h2>
 
-  <label for="pseudo" class="block text-lg font-medium text-gray-700 mb-2">Entrez votre pseudo :</label>
-  <input type="text" name="pseudo" id="pseudo" class="w-full p-4 bg-gray-100 text-gray-800 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none mb-6 placeholder-gray-400 transition duration-200 ease-in-out" placeholder="Votre pseudo">
 
-  <input type="submit" value="Se connecter" class="w-full p-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 hover:shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500">
-  
-</form>
 
-    
+  <!-- Main -->
+  <main class="mt-8 flex justify-center">
+
+  <!-- Background animation -->
+    <div class="background">
+      <!-- étoiles pattern -->
+      <div class="w-[40%] max-h-fit shadow-[0_20px_17px_4px_rgba(0,0,0,0.99)] items-center flex justify-center bg-gradient-to-r from-amber-300 to-yellow-600">
+    </div>
+
+      <!-- Formulaire d'inscription -->
+      <form action="./process/process_create_user.php" method="post">
+
+        <h2>Inscription</h2>
+
+      </form>
+
+    </div>
+
+  </main>
+
+
+
+  </div>
 </body>
+
 </html>
