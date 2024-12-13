@@ -1,5 +1,5 @@
 <?php
-require_once "./utils/connect-db.php";
+require_once "../utils/connect-db.php";
 
 
     $sql = "SELECT * FROM quiz";
@@ -20,8 +20,8 @@ require_once "./utils/connect-db.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quizz404</title>
   <link rel="icon" href="./image/_.ico">
-  <link rel="stylesheet" href="./css/output.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="../css/output.css">
+  <link rel="stylesheet" href="../css/style.css">
   <script src="https://cdn.tailwindcss.com"></script>
 
 
@@ -61,7 +61,7 @@ require_once "./utils/connect-db.php";
 
 
 
-    <h3 class="text-slate-100 size-48 shadow-sm">Choisis ton quizz !</h3>
+    <h3 class="text-slate-100 size-48 shadow-sm block">Choisis ton quizz !</h3>
 
     <div class="flex max-md:flex-col gap-8">
 
@@ -69,12 +69,13 @@ require_once "./utils/connect-db.php";
 
     foreach ($quizzs as $quizz) {
     ?>
-
-    <div class="bg-slate-100 w-24 h-24 shadow-sm rounded-sm">
-        <h4 class="">
+    <a href="quizz?id=<?= $quizz["id"] ?>">
+    <div class="bg-slate-100 w-48 h-48 shadow-sm rounded-sm">
+        <h4>
         <?= $quizz["titre"] ?>
         </h4>
     </div>
+    </a>
 
 
     <?php
