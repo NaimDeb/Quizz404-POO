@@ -68,26 +68,26 @@ try {
 
 
   <!-- Main -->
-  <main class="mt-8 flex justify-center">
+  <main class="mt-8 flex flex-col items-center">
 
-    <h1 class="text-red-400 font-bold size-32 w-full">
+    <h1 class="text-red-400 font-bold size-32 w-fit text-nowrap">
          <?= $currentQuestion['question'] ?> 
     </h1>
 
-
+<div class="flex flex-col gap-3">
 <?php   
     foreach ($reponses as $reponse) {
 ?>
 
-        
-        <div class="w-1/3 border-black">
+
+        <div class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
             <?= $reponse["intitule"] ?>
         </div>
+
 <?php
     }
-
 ?>
-
+</div>
 
 </main>
 
