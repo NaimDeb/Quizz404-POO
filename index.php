@@ -11,6 +11,8 @@
 </head>
 
 <body class="h-[100vh] bg-body">
+
+
   <!-- Header Quiz404 -->
   <header class="flex w-100 justify-around pt-5 items-center opacity-[1]">
 
@@ -40,22 +42,26 @@
   <!-- Main -->
   <main class="mt-8 flex justify-center">
 
-  <!-- Background animation -->
-    <div class="background">
-      <!-- étoiles pattern -->
-      <div class="w-[40%] max-h-fit shadow-[0_20px_17px_4px_rgba(0,0,0,0.99)] items-center flex justify-center bg-gradient-to-r from-amber-300 to-yellow-600">
-    </div>
+
 
       <!-- Formulaire d'inscription -->
       <form action="./process/process_create_user.php" method="post">
 
-        <h2>Inscription</h2>
+      
 
       </form>
 
     </div>
 
   </main>
+
+  
+
+    <!-- Background animation -->
+    <div class="background">
+      <!-- étoiles pattern -->
+      <div class="w-[40%] max-h-fit shadow-[0_20px_17px_4px_rgba(0,0,0,0.99)] items-center flex justify-center bg-gradient-to-r from-amber-300 to-yellow-600">
+    </div>
 
 
 
