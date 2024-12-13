@@ -1,3 +1,17 @@
+<?php
+require_once "./utils/connect-db.php";
+
+
+    $sql = "SELECT * FROM quiz";
+    try {
+        $stmt = $pdo->query($sql);
+        $quizzs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $error) {
+        echo "Erreur lors de la requête : " . $error->getMessage();
+    }
+    ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +22,9 @@
   <link rel="icon" href="./image/_.ico">
   <link rel="stylesheet" href="./css/output.css">
   <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
 </head>
 
 <body class="h-[100vh] bg-body">
@@ -44,14 +61,28 @@
 
 
 
-      <!-- Formulaire d'inscription -->
-      <form action="./process/process_create_user.php" method="post">
+    <h3 class="text-slate-100 size-48 shadow-sm">Choisis ton quizz !</h3>
 
-      
+    <div class="flex max-md:flex-col gap-8">
 
-      </form>
+    <?php 
 
+    foreach ($quizzs as $quizz) {
+    ?>
+
+    <div class="bg-slate-100 w-24 h-24 shadow-sm rounded-sm">
+        <h4 class="">
+        <?= $quizz["titre"] ?>
+        </h4>
     </div>
+
+
+    <?php
+    }
+    
+    ?>
+    </div>
+    
 
   </main>
 
