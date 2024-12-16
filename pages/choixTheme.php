@@ -7,7 +7,14 @@ if (isset($_SESSION["user"])){
 }
 
 require_once "../utils/connect-db.php";
-$sql = "";
+$sql = "SELECT * FROM quiz";
+
+try {
+    $stmt = $pdo->query($sql);
+    $quiz = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $error) {
+    echo "Erreur lors de la requete : " . $error->getMessage();
+}
 
 ?>
 <!DOCTYPE html>
@@ -60,8 +67,15 @@ $sql = "";
 <div class="h-[100%] pt-[150px] text-center">
 <h1 class="text-5xl font-first-font">CHOISI TON THÈME !</h1>
 
-<div class="flex justify-center">
-<a href=""><img src="" alt=""></a>
+<div class="flex justify-center flex-wrap pt-6">
+<?php
+foreach ($quiz as $quizz) {
+?>    
+<a class="" href=""><img class="w-[100px]" src="<?= $quizz['img'] ?>" alt=""></a>
+
+<?php
+}
+?>
 </div>
 
 </div>
