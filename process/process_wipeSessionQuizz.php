@@ -6,6 +6,6 @@ unset($_SESSION["titre"]);
 unset($_SESSION["currentQuestion"]);
 unset($_SESSION["nbOfQuestions"]);
 
-header("location: ../pages/choixQuizz.php");
+header("location: ../pages/choixTheme.php");
 
 ?>

@@ -16,6 +16,10 @@ try {
     echo "Erreur lors de la requete : " . $error->getMessage();
 }
 
+
+if (isset($_SESSION["titre"])) {
+    header("location: ../process/process_wipeSessionQuizz.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +75,7 @@ try {
 <?php
 foreach ($quiz as $quizz) {
 ?>    
-<a class="w-[20%]" href=""><img src="<?= $quizz['img'] ?>" alt=""></a>
+<a class="w-[20%]" href="quizz?id=<?= $quizz["id"] ?>"><img src="<?= $quizz['img'] ?>" alt=""></a>
 
 <?php
 }
