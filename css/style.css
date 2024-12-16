@@ -136,3 +136,10 @@
     overflow: hidden;
     box-shadow: 12px 25px 50px 12px rgb(0 0 0 / 0.5);
   }
+
+  header * {
+    z-index: 12;
+  }
+
+
+  
