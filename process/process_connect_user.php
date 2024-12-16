@@ -1,40 +1,29 @@
 <?php
 session_start();
 require_once '../utils/connect-db.php';
+$pseudo = $_POST["pseudo"];
 
 
-if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
+$sql = "SELECT pseudo FROM user WHERE pseudo = :pseudo ;";
+try {
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam('pseudo', $pseudo, PDO::PARAM_STR);
+    $stmt->execute();
     
-   
-    $pseudo = htmlspecialchars(trim($_POST['pseudo']));
-
-    
-    $sql = "SELECT pseudo FROM user WHERE pseudo = :pseudo";
-    try {
+    if ($stmt->fetch()) {
        
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['pseudo' => $pseudo]);
-
+        echo "Utilisateur connecté avec succès !";
+        $_SESSION["user"] = $pseudo;
+        header("Location: ../pages/choixTheme.php");
         
-        if ($stmt->fetch()) {
-            
-            $_SESSION["user"] = $pseudo;
-            header("Location: ../index.php");
-            exit;
-        } else {
-          
-            $_SESSION["message"] = "Le pseudo '$pseudo' n'existe pas.";
-            header("Location: ../connect_user.php");
-            exit;
-        }
-    } catch (PDOException $error) {
         
-        echo "Erreur lors de la requête : " . $error->getMessage();
-    }
-} else {
-    
-    $_SESSION["erreur"] = "Le champ pseudo doit être rempli.";
-    header("Location: ../connect_user.php");
-    exit;
+    } else {
+        
+        $_SESSION["message"] = "Le pseudo '$pseudo' n'existe pas.";
+        header("Location: ../pages/connexion.php");
+        exit;
+}
+} catch (PDOException $error) {
+    echo "Erreur lors de la requete : " . $error->getMessage();
 }
 ?>

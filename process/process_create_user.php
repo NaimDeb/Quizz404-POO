@@ -16,24 +16,15 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     if ($stmt->fetch()) {
        
         $_SESSION["erreur"] = "Le pseudo '$pseudo' est déjà pris.";
-        header("Location: ../inscription.php");
+        header("Location: ../pages/formulaire.php");
         exit;
     } else {
-       
-
         
-        $insertStmt = $pdo->prepare("INSERT INTO user (pseudo) VALUES (:pseudo)");
-
-       
-        $insertStmt->execute([
-            'pseudo' => $pseudo,
-           
-        ]);
-
-       
-        $_SESSION["add"] = "Utilisateur créé avec succès !";
-        header("Location: ../connect_user.php");
-        exit;
+        $stmt = $pdo->prepare("INSERT INTO user (pseudo) VALUES (:pseudo)");
+        $stmt->execute(['pseudo' => $pseudo]);
+        $_SESSION["erreur"] = "Utilisateur créé avec succès !";
+        header("Location: ../index.php");
+        
     }
 } else {
     

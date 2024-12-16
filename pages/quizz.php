@@ -23,7 +23,7 @@ if (isset($_GET["id"])) {
     }
     $sql = "SELECT * FROM question WHERE id_quiz LIKE :id";
 } else {
-    header("location: choixQuizz.php");
+    header("location: choixTheme.php");
     exit;
 };
 
@@ -39,7 +39,7 @@ try {
 
 // Vérifie si il y'a des questions
 if (empty($questions)) {
-    header("location: choixQuizz.php?error=noQuestions");
+    header("location: choixTheme.php?error=noQuestions");
     exit;
 }
 
@@ -102,7 +102,7 @@ try {
     <!-- Main -->
     <main class="mt-8 flex flex-col items-center">
 
-        <a href="./choixQuizz.php" class="bg-pink-500">retour choix des qiuzz</a>
+        <a href="./choixTheme.php" class="bg-pink-500">retour choix des quizz</a>
 
         <h1>Quizz : <?= $_SESSION["titre"]  ?> </h1>
 
