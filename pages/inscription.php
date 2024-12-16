@@ -18,7 +18,7 @@ session_start();
 
 if (isset($_SESSION['erreur'])) {
     
-    echo '<p class=" bg-red-600 border border-green-500 p-4 text-center">' . $_SESSION['erreur'] . '</p>';
+    echo '<p class=" bg-red-600 border p-4 text-center">' . $_SESSION['erreur'] . '</p>';
     unset($_SESSION['erreur']);
 }
 ?>
@@ -32,7 +32,7 @@ if (isset($_SESSION['erreur'])) {
   <input type="text" name="pseudo" id="pseudo"  class="w-full p-4 bg-gray-100 text-gray-800 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none mb-6 placeholder-gray-400 transition duration-200 ease-in-out" placeholder="Votre pseudo">
   
 
-  <input type="submit" value="S'inscrire"   class="w-full p-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 hover:shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500">
+  <input type="submit" value="S'inscrire"   class="w-full p-4 bg-indigo-600 text-black font-semibold rounded-lg shadow-md hover:bg-indigo-700 hover:shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500">
   
   
 </form>
