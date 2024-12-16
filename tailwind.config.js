@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./index.php", "./pages/*.php"],
   theme: {
-    extend: {},
+    extend: {
+      font: {
+        "first-font": ['Carter One', 'serif'],
+      },
+    },
   },
   plugins: [],
 }
