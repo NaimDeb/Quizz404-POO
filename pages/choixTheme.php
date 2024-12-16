@@ -67,11 +67,11 @@ try {
 <div class="h-[100%] pt-[150px] text-center">
 <h1 class="text-5xl font-first-font">CHOISI TON THÈME !</h1>
 
-<div class="flex justify-center flex-wrap pt-6">
+<div class="flex justify-center flex-wrap pt-6 gap-8">
 <?php
 foreach ($quiz as $quizz) {
 ?>    
-<a class="" href=""><img class="w-[100px]" src="<?= $quizz['img'] ?>" alt=""></a>
+<a class="w-[20%]" href=""><img src="<?= $quizz['img'] ?>" alt=""></a>
 
 <?php
 }
