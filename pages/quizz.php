@@ -15,15 +15,13 @@ if (isset($_GET["id"])) {
         try {
             $sql = "SELECT titre FROM quiz WHERE id LIKE {$id}";
             $stmt = $pdo->query($sql);
-            $titre = $stmt->fetch(PDO::FETCH_DEFAULT);
+            $titre = $stmt->fetch(PDO::FETCH_ASSOC);
             $_SESSION["titre"] = $titre["titre"];
         } catch (PDOException $error) {
             echo "Erreur lors de la requête : " . $error->getMessage();
         }
     }
-
-
-    $sql = "SELECT * FROM question WHERE id_quiz LIKE {$id}";
+    $sql = "SELECT * FROM question WHERE id_quiz LIKE :id";
 } else {
     header("location: choixQuizz.php");
     exit;
@@ -32,7 +30,8 @@ if (isset($_GET["id"])) {
 
 // 
 try {
-    $stmt = $pdo->query($sql);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $id]);
     $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $error) {
     echo "Erreur lors de la requête : " . $error->getMessage();
@@ -51,6 +50,20 @@ if (!isset($_SESSION["currentQuestion"])) {
     $_SESSION["nbOfQuestions"] = count($questions);
 }
 
+// Check if question is next 
+if (isset($_POST["gotoNext"])) {
+    // Incrémente la question si ce n'est pas la dernière
+    if ($_SESSION["currentQuestion"] + 1 < $_SESSION["nbOfQuestions"]) {
+        $_SESSION["currentQuestion"]++;
+    } else {
+        // Si c'est la dernière question, redirige vers la page des résultats
+        header("location: resultat.php");
+        exit;
+    }
+    // Redirige pour éviter que l'utilisateur ne resoumette le formulaire en cas de rafraîchissement
+    header("location: quizz.php?id={$id}");
+    exit;
+}
 
 // Récupère l'id de la question
 $currentQuestion = $questions[$_SESSION["currentQuestion"]];
@@ -89,6 +102,8 @@ try {
     <!-- Main -->
     <main class="mt-8 flex flex-col items-center">
 
+        <a href="./choixQuizz.php" class="bg-pink-500">retour choix des qiuzz</a>
+
         <h1>Quizz : <?= $_SESSION["titre"]  ?> </h1>
 
         <p>Question : <?= $_SESSION["currentQuestion"] + 1 ?> / <?= $_SESSION["nbOfQuestions"] ?> </p>
@@ -106,7 +121,7 @@ try {
             ?>
 
                 <!-- Questions -->
-                <div class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow reponse rep<?=$key?>">
+                <div class="bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow reponse rep<?= $key ?>">
                     <?= $reponse["intitule"] ?>
                 </div>
 
@@ -115,7 +130,16 @@ try {
             ?>
         </div>
 
-            <!-- Mettre bouton suivant -->
+        <!-- Ajouter style svp -->
+        <?php if ($_SESSION["currentQuestion"] + 1 < $_SESSION["nbOfQuestions"]) : ?>
+            <!-- Bouton Question Suivante -->
+            <button type="submit" id="nextQuestion" class="p-4 bg-blue-500 mt-8 text-slate-100 hidden" onclick="goToNextQuestion()">Question suivante</button>
+        <?php else : ?>
+            <!-- Bouton Résultats -->
+            <form method="POST" action="resultat.php">
+                <button type="submit" class="p-4 bg-green-500 mt-8 text-white">Voir Résultats</button>
+            </form>
+        <?php endif; ?>
 
 
     </main>
@@ -123,47 +147,47 @@ try {
 
 </html>
 <script>
+    // Nul mais pas le temps
+    let isSelectedCorrect = false
 
     const allAnswers = document.querySelectorAll(".reponse");
 
-    allAnswers.forEach(answer => document.addEventListener("click", chooseAnswer));
+    allAnswers.forEach(answer => answer.addEventListener("click", chooseAnswer));
 
 
     function chooseAnswer(event) {
 
         const selectedAnswer = event.target
-        console.log(selectedAnswer);
-        
-    
-        const correctNumber = <?= json_encode(array_search(true, array_column($reponses, 'is_correct'))); ?>
-        // console.log(correctNumber);
-                
+        const correctNumber = <?= json_encode(array_search(true, array_column($reponses, 'is_correct'))); ?>;
         const correctAnswer = document.querySelector(`.rep${correctNumber}`)
+
+        const isLastQuestion = <?= json_encode($_SESSION["currentQuestion"] + 1 === $_SESSION["nbOfQuestions"]); ?>;
         // A essayer    
-    
-    
+
+
         // Style réponse sélectionnée
         selectedAnswer.classList.add("border-sky-500", "border-4")
-    
+
         allAnswers.forEach(answer => {
             // Style mauvaise réponse
-            answer.classList.add("bg-red-500", "text-white")
-            
-        });        
+            if (answer !== correctAnswer) {
+                answer.classList.add("bg-red-500", "text-white");
+            }
+
+        });
 
         // Style bonne réponse
 
-        correctAnswer.classList.remove("bg-red-500");
         correctAnswer.classList.add("bg-green-500");
 
 
         if (selectedAnswer == correctAnswer) {
-
+            isSelectedCorrect = true
             // Si gagné mettre points TODO
-            
+
         }
 
-        
+
 
 
 
@@ -174,6 +198,39 @@ try {
     }
 
 
+    function goToNextQuestion() {
+        // crée un form post et l'envoie
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = './quizz?id=<?= $id ?>';
+
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'gotoNext';
+        input.value = true;
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+
+    }
+
+    // Si c'est la dernière question 
+
+    if (isLastQuestion) {
+        document.querySelector("#nextQuestion").classList.add("hidden");
+        // Si nécessaire, afficher dynamiquement un bouton "Voir Résultats"
+        const resultButton = document.createElement("button");
+
+        resultButton.type = "submit";
+        resultButton.textContent = "Voir Résultats";
+        resultButton.classList.add("p-4", "bg-green-500", "mt-8", "text-white");
+        resultButton.onclick = () => {
+            window.location.href = "./resultat.php";
+        };
+
+        document.querySelector("main").appendChild(resultButton);
+}
 
 
 

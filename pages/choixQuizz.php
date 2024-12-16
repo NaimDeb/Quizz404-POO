@@ -1,6 +1,6 @@
 <?php
 require_once "../utils/connect-db.php";
-
+session_start();
 
     $sql = "SELECT * FROM quiz";
     try {
@@ -9,6 +9,16 @@ require_once "../utils/connect-db.php";
     } catch (PDOException $error) {
         echo "Erreur lors de la requête : " . $error->getMessage();
     }
+
+    // Rajouter si non connecté
+
+
+    // Si y'a déja un titre de quizz on va unset
+    if (isset($_SESSION["titre"])) {
+      header("location: ../process/process_wipeSessionQuizz.php");
+    }
+
+
     ?>
 
 
