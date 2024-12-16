@@ -2,8 +2,27 @@
 require_once "../utils/connect-db.php";
 session_start();
 
+
+
+
+
+// Check si le quizz existe
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
+
+    // Récupérer nom du quizz
+    if (!isset($_SESSION["titre"])) {
+        try {
+            $sql = "SELECT titre FROM quiz WHERE id LIKE {$id}";
+            $stmt = $pdo->query($sql);
+            $titre = $stmt->fetch(PDO::FETCH_DEFAULT);
+            $_SESSION["titre"] = $titre["titre"];
+        } catch (PDOException $error) {
+            echo "Erreur lors de la requête : " . $error->getMessage();
+        }
+    }
+
+
     $sql = "SELECT * FROM question WHERE id_quiz LIKE {$id}";
 
 } else {
@@ -27,9 +46,10 @@ if (empty($questions)){
 }
 
 
-// Initialise currentQuestion 
+// Initialise currentQuestion  et nbOfQuestions
 if (!isset($_SESSION["currentQuestion"])){
     $_SESSION["currentQuestion"] = 0;
+    $_SESSION["nbOfQuestions"] = count($questions);
 }
 
 
@@ -47,7 +67,7 @@ try {
 }
 
 ?>
-
+<!-- HTML -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,9 +90,13 @@ try {
   <!-- Main -->
   <main class="mt-8 flex flex-col items-center">
 
-    <h1 class="text-red-400 font-bold size-32 w-fit text-nowrap">
+  <h1>Quizz : <?= $_SESSION["titre"]  ?> </h1>
+
+  <p>Question : <?= $_SESSION["currentQuestion"]+1 ?> / <?= $_SESSION["nbOfQuestions"] ?> </p>
+
+    <h2 class="text-red-400 font-bold size-32 w-fit text-nowrap">
          <?= $currentQuestion['question'] ?> 
-    </h1>
+    </h2>
 
 <div class="flex flex-col gap-3">
 <?php   
