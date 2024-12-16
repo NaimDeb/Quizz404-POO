@@ -75,7 +75,7 @@ if (isset($_SESSION["titre"])) {
 <?php
 foreach ($quiz as $quizz) {
 ?>    
-<a class="w-[20%]" href="quizz?id=<?= $quizz["id"] ?>"><img src="<?= $quizz['img'] ?>" alt=""></a>
+<a class="w-[20%] hover:scale-110 transition-all" href="quizz?id=<?= $quizz["id"] ?>"><img src="<?= $quizz['img'] ?>" alt=""></a>
 
 <?php
 }

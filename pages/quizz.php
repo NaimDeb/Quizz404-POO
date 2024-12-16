@@ -1,4 +1,31 @@
 <?php
+$quizDuration = 10;  // Durée du quiz en secondes
+$currentTime = time();
+$endTime = $currentTime + $quizDuration;  // Calculer l'heure de fin du quiz
+?>
+
+
+    <script>
+        var endTime = <?php echo $endTime; ?>;
+
+        function updateCountdown() {
+            var now = Math.floor(Date.now() / 1000); 
+            var timeLeft = endTime - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById("countdown").innerHTML = "Temps écoulé!";
+                goToNextQuestion()
+                return;
+            }
+
+            document.getElementById("countdown").innerHTML = timeLeft + " secondes";
+        }
+
+        // Mettre à jour le compte à rebours chaque seconde
+        setInterval(updateCountdown, 1000);
+    </script>
+
+<?php
 require_once "../utils/connect-db.php";
 session_start();
 
@@ -104,6 +131,7 @@ try {
 
 </head>
 
+
 <body>
 
 
@@ -120,6 +148,11 @@ try {
         <h2 class="text-red-400 font-bold size-32 w-fit text-nowrap">
             <?= $currentQuestion['question'] ?>
         </h2>
+       
+    </div>
+    <div class="bg-white p-8 rounded-lg shadow-lg text-center w-80">
+        <h1 class="text-3xl font-semibold mb-4 text-gray-800">Il vous reste:</h1>
+        <div id="countdown" class="m-4 text-4xl font-bold text-blue-500">10 secondes</div>
 
 
 
