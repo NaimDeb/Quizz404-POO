@@ -47,11 +47,12 @@ if (empty($questions)) {
 // Initialise currentQuestion  et nbOfQuestions
 if (!isset($_SESSION["currentQuestion"])) {
     $_SESSION["currentQuestion"] = 0;
+    $_SESSION["nbOfCorrectQuestions"] = 0;
     $_SESSION["nbOfQuestions"] = count($questions);
 }
 
 // Check if question is next 
-if (isset($_POST["gotoNext"])) {
+if (isset($_POST["isCorrect"])) {
     // Incrémente la question si ce n'est pas la dernière
     if ($_SESSION["currentQuestion"] + 1 < $_SESSION["nbOfQuestions"]) {
         $_SESSION["currentQuestion"]++;
@@ -60,6 +61,13 @@ if (isset($_POST["gotoNext"])) {
         header("location: resultat.php");
         exit;
     }
+
+    // Compte si bonne réponse
+    if ($_POST["isCorrect"] == true) {
+        $_SESSION["nbOfCorrectQuestions"]++;
+    }
+
+
     // Redirige pour éviter que l'utilisateur ne resoumette le formulaire en cas de rafraîchissement
     header("location: quizz.php?id={$id}");
     exit;
@@ -183,8 +191,6 @@ try {
 
         if (selectedAnswer == correctAnswer) {
             isSelectedCorrect = true
-            // Si gagné mettre points TODO
-
         }
 
 
@@ -206,8 +212,8 @@ try {
 
         const input = document.createElement('input');
         input.type = 'hidden';
-        input.name = 'gotoNext';
-        input.value = true;
+        input.name = 'isCorrect';
+        input.value = isSelectedCorrect;
 
         form.appendChild(input);
         document.body.appendChild(form);
