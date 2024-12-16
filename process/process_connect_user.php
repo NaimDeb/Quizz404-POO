@@ -13,7 +13,8 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     try {
        
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['pseudo' => $pseudo]);
+        $stmt->bindParam('pseudo', $pseudo, PDO::PARAM_STR);
+        $stmt->execute();
 
         
         if ($stmt->fetch()) {
