@@ -18,6 +18,14 @@ if (isset($_SESSION["message"])) {
     
     unset($_SESSION["message"]);
 }
+
+if (isset($_SESSION["erreur"])) {
+    
+  echo "<p style='color: red; text-align: center;'>" . $_SESSION["erreur"] . "</p>";
+  
+  
+  unset($_SESSION["erreur"]);
+}
 ?>
 
 <form action="./process/process_connect_user.php" method="post" class="max-w-xl mx-auto my-auto p-8 bg-white rounded-xl shadow-2xl border border-gray-200">
@@ -28,7 +36,7 @@ if (isset($_SESSION["message"])) {
   
 
   <input type="submit"  value="Se connecter" class="w-full p-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 hover:shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500">
-  
+ 
 </form>
 
 
