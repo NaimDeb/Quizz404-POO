@@ -14,7 +14,7 @@ $questions = [
 ];
 
 $qcm->setQuestion($questions);
-var_dump($qcm);
+
 ?>
 
 
@@ -33,8 +33,8 @@ var_dump($qcm);
     <?php foreach($qcm->getQuestion() as $question){ ?>
         <h3><?= $question->getIntitule() ?></h3>
         <ul>
-            <?php foreach($question->getAnswers as $answer){ ?>
-                <li><?= $answer->getAnswers() ?></li>
+            <?php foreach($question->getAnswers() as $answer){ ?>
+                <li><?= $answer->getIntitule() ?></li>
             <?php } ?>   
         </ul>
 
