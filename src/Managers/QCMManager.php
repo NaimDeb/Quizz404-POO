@@ -14,20 +14,23 @@ class QcmManager {
             $html .= '<ul class="flex justify-center gap-4 space-y-2 flex-col">';
 
             // Parcours des réponses de la question
+            $explanation = htmlspecialchars($question->getExplanation()); 
             foreach ($question->getAnswers() as $answer) {
                 $isRight = $answer->getisRightAnswer() ? 'true' : 'false';
-                $html .= '<li class="answer-item text-lg text-gray-600 p-2 border border-gray-300 rounded-lg w-[100%] mx-auto cursor-pointer" data-is-right="' . $isRight . '">';
+                
+                $html .= '<li class="answer-item text-lg text-gray-600 p-2 border border-gray-300 rounded-lg w-[100%] mx-auto cursor-pointer" data-is-right="' . $isRight . '" data-explanation="' . $explanation . '">';
                 $html .= htmlspecialchars($answer->getIntitule());
                 $html .= '</li>';
             }
 
             $html .= '</ul>';
+            $html .= '<p class="explanation hidden text-lg text-gray-700 mt-4">' . $explanation . '</p>'; 
             $html .= '</div>';
         }
 
         $html .= '</div>';
 
-        
+        // Ajout du JavaScript pour gérer les clics et l'affichage de l'explication
         $html .= '
         <script>
             // Sélection de tous les éléments de réponse
@@ -37,6 +40,8 @@ class QcmManager {
             answers.forEach(answer => {
                 answer.addEventListener("click", function () {
                     const isRight = this.getAttribute("data-is-right") === "true";
+                    const explanation = this.getAttribute("data-explanation");
+                    const explanationElement = this.closest(".question-card").querySelector(".explanation");
 
                     // Supprimer les styles précédents des réponses
                     answers.forEach(a => {
@@ -51,6 +56,10 @@ class QcmManager {
                     } else {
                         this.classList.add("text-red-500", "font-bold", "border-red-500"); // Mauvaise réponse : rouge
                     }
+
+                    // Afficher l\'explication
+                    explanationElement.textContent = explanation;
+                    explanationElement.classList.remove("hidden");
                 });
             });
         </script>

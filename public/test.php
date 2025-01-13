@@ -1,7 +1,7 @@
 <?php
 include_once "../utils/autoloader.php";
 $qcm = new QCM(1, 'QCM de test');
-$question = new Question('Que signifie POO ?');
+$question = new Question('Que signifie POO ?', "Explication de fou");
 $answers = [
     new Answer('Programmation Orientée Objet', true),
     new Answer('Papillon Onirique Ostentatoire')
