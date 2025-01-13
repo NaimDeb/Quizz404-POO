@@ -21,6 +21,9 @@ class Question {
     public function getAnswers() : array {
         return $this->answers;
     }
+    public function getExplanation() : string {
+        return $this->answerExplanation;
+    }
 
     // Setters
 
@@ -38,6 +41,10 @@ class Question {
         }
 
 
+    }
+    public function setExplanation(string $explanation):self{
+        $this->answerExplanation = $explanation;
+        return $this;
     }
 
 
