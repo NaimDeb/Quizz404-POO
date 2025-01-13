@@ -1,3 +1,9 @@
+<?php 
+
+require_once "../utils/autoloader.php"
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,15 +57,5 @@
     <div id="stripe-container">
       <div id="stripe-pattern">
         <div class="h-[100%] pt-[250px] m-auto max-w-[100vw]">
+        <!-- METTEZ VOTRE HTML ICI -->
 
-            Hello la team
-
-        </div>
-      </div>
-    </div>
-    </main>
-
-
-</body>
-
-</html>

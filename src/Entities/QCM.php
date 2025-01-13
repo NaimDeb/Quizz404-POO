@@ -2,8 +2,8 @@
 
 class QCM {
 private int $id;
-private array $questions;
 private string $nom;
+private array $questions;
 
 	public function __construct($id, $nom) {
 		$this->id = $id;
@@ -18,6 +18,10 @@ private string $nom;
     public function getQuestion(): array {
         return $this->questions;
     }
+    
+        public function getNom(): string {
+            return $this->nom;
+        }
 
     public function setQuestion(array $questions): self {
         foreach($questions as $question){
@@ -27,10 +31,6 @@ private string $nom;
         }
         $this->questions = $questions;
         return $this;
-    }
-
-    public function getNom(): string {
-        return $this->nom;
     }
 }
 ?>

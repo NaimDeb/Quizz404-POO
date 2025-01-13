@@ -18,7 +18,7 @@
   <header class="flex w-100 justify-around pt-5 items-center opacity-[1] z-2">
 
     
-    <a class="text-white font-first-font font-extrabold" href="../pages/formulaire.php">
+    <a class="text-white font-first-font font-extrabold" href="./formulaire.php">
     <div class="w-[9%] h-[70px] items-center flex justify-center btn">
     Inscription
     </div>
@@ -36,7 +36,7 @@
     </div>
  
       
-    <a class="text-white font-first-font font-extrabold" href="../pages/connexion.php">
+    <a class="text-white font-first-font font-extrabold" href="./connexion.php">
     <div class="w-[9%] h-[70px] items-center flex justify-center btn">
     Connexion
     </div>
