@@ -58,7 +58,7 @@
 
 
 <div class="flex flex-col"> <!-- Card Formulaire -->
-<form action="../process/process_connect_user.php" method="post" class="flex flex-col items-center gap-4">
+<form action="./process/process_connect_user.php" method="post" class="flex flex-col items-center gap-4">
   <h2 class="text-4xl font-bold text-center text-gray-800 mb-6">Connexion</h2>
 
   <label for="pseudo" class="text-xl">Entrez votre pseudo :</label>
