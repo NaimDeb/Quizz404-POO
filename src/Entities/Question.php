@@ -18,6 +18,9 @@ class Question {
 
     // Getters
 
+    public function getIntitule() : string {
+        return $this->intitule;
+    }
     public function getAnswers() : array {
         return $this->answers;
     }
