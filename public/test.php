@@ -13,25 +13,19 @@ $questions = [
     $question
 ];
 
-$qcm->setQuestion($questions);;
+$qcm->setQuestion($questions);
+
+
+
 
 
 include_once "./assets/components/htmlstart.php"
 ?>
-<section>
-    
-    <h2><?= $qcm->getNom() ?></h2>
+<?php
+$qcmManager = new QcmManager();
+echo $qcmManager->generateDisplay($qcm);
 
-    <?php foreach($qcm->getQuestion() as $question){ ?>
-        <h3><?= $question->getIntitule() ?></h3>
-        <ul>
-            <?php foreach($question->getAnswers() as $answer){ ?>
-                <li><?= $answer->getIntitule() ?></li>
-            <?php } ?>   
-        </ul>
-
-    <?php } ?>
-</section>
+?>
 
 <?php
 include_once "./assets/components/htmlend.php"
