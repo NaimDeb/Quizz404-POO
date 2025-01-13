@@ -1,6 +1,7 @@
 <?php 
 
-require_once "../utils/autoloader.php"
+require_once "../utils/autoloader.php";
+session_start();
 
 ?>
 
@@ -22,7 +23,7 @@ require_once "../utils/autoloader.php"
       <header class="flex w-100 justify-around pt-5 items-center opacity-[1] z-2">
 
 
-        <a class="text-white font-first-font font-extrabold" href="./pages/formulaire.php">
+        <a class="text-white font-first-font font-extrabold" href="./inscription.php">
           <div class="w-[9%] h-[70px] items-center flex justify-center btn">
             Inscription
           </div>
@@ -40,7 +41,7 @@ require_once "../utils/autoloader.php"
         </div>
 
 
-        <a class="text-white font-first-font font-extrabold" href="./pages/connexion.php">
+        <a class="text-white font-first-font font-extrabold" href="./connexion.php">
           <div class="w-[9%] h-[70px] items-center flex justify-center btn">
             Connexion
           </div>
@@ -58,4 +59,7 @@ require_once "../utils/autoloader.php"
       <div id="stripe-pattern">
         <div class="h-[100%] pt-[250px] m-auto max-w-[100vw]">
         <!-- METTEZ VOTRE HTML ICI -->
+
+        
+
 

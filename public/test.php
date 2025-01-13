@@ -6,32 +6,42 @@ $answers = [
     new Answer('Programmation Orientée Objet', true),
     new Answer('Papillon Onirique Ostentatoire')
 ];
+$questions = [];
 
 $question->setAnswers($answers);
 $question->setExplanation('La réponse correcte est "Programmation Orientée Objet".');
-$questions = [
+$questions += [
     $question
 ];
 
-$qcm->setQuestion($questions);;
+$question = new Question('Que signifie Karl ?');
+$answers = [
+    new Answer('Karl Orientée Objet', true),
+    new Answer('Papillon Onirique Ostentatoire')
+];
+
+$question->setAnswers($answers);
+$question->setExplanation('La réponse correcte est "Karl".');
+$questions += [
+    $question
+];
+
+
+
+
+$qcm->setQuestion($questions);
+
+
+
 
 
 include_once "./assets/components/htmlstart.php"
 ?>
-<section>
-    
-    <h2><?= $qcm->getNom() ?></h2>
+<?php
+$qcmManager = new QcmManager();
+echo $qcmManager->generateDisplay($qcm);
 
-    <?php foreach($qcm->getQuestion() as $question){ ?>
-        <h3><?= $question->getIntitule() ?></h3>
-        <ul>
-            <?php foreach($question->getAnswers() as $answer){ ?>
-                <li><?= $answer->getIntitule() ?></li>
-            <?php } ?>   
-        </ul>
-
-    <?php } ?>
-</section>
+?>
 
 <?php
 include_once "./assets/components/htmlend.php"
