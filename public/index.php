@@ -11,8 +11,8 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quizz404</title>
   <link rel="icon" href="./image/_.ico">
-  <link rel="stylesheet" href="../assets/css/output.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/output.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
