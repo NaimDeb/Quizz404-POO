@@ -22,7 +22,7 @@ session_start();
   <header class="flex w-100 justify-around pt-5 items-center opacity-[1] z-2">
 
     
-    <a class="text-white font-first-font font-extrabold" href="./pages/formulaire.php">
+    <a class="text-white font-first-font font-extrabold" href="./formulaire.php">
     <div class="w-[9%] h-[70px] items-center flex justify-center btn">
     Inscription
     </div>
@@ -40,7 +40,7 @@ session_start();
     </div>
  
       
-    <a class="text-white font-first-font font-extrabold" href="./pages/connexion.php">
+    <a class="text-white font-first-font font-extrabold" href="./connexion.php">
     <div class="w-[9%] h-[70px] items-center flex justify-center btn">
     Connexion
     </div>
@@ -73,12 +73,12 @@ session_start();
 
 
   <div class="flex gap-4 w-full justify-center text-center">
-  <a class="text-white font-first-font font-extrabold hover:scale-110 transition-all" href="./pages/formulaire.php">
+  <a class="text-white font-first-font font-extrabold hover:scale-110 transition-all" href="./formulaire.php">
     <div class="w-[9%] h-[70px] items-center flex justify-center btn">
     Inscription
     </div>
     </a>
-    <a class="text-white font-first-font font-extrabold hover:scale-110 transition-all" href="./pages/connexion.php">
+    <a class="text-white font-first-font font-extrabold hover:scale-110 transition-all" href="./connexion.php">
     <div class="w-[9%] h-[70px] items-center flex justify-center btn">
     Connexion
     </div>
