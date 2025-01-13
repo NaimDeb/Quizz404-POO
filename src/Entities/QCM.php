@@ -21,7 +21,7 @@ private string $nom;
 
     public function setQuestion(array $questions): self {
         foreach($questions as $question){
-            if(!$question instanceof QCM){
+            if(!$question instanceof Question){
                 throw new Exception("Il faut que le tableau soit composé de QCM uniquement");
             }
         }
