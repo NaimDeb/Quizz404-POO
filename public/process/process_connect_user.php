@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../utils/connect-db.php';
+require_once '../../utils/connect-db.php';
 $pseudo = $_POST["pseudo"];
 
 
@@ -19,7 +19,7 @@ try {
         
     } else {
         
-        $_SESSION["message"] = "Le pseudo '$pseudo' n'existe pas.";
+        $_SESSION["erreur"] = "Le pseudo '$pseudo' n'existe pas.";
         header("Location: ../connexion.php");
         exit;
 }
