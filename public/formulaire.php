@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quizz404</title>
   <link rel="icon" href="./image/_.ico">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/output.css">
+  <link rel="stylesheet" href="../public/assets/css/style.css">
+  <link rel="stylesheet" href="../public/assets/css/output.css">
+  
 </head>
 
 <body>
@@ -57,7 +58,7 @@
 
 
 <div class="flex flex-col"> <!-- Card Formulaire -->
-<form action="../process/process_create_user.php" method="post" class="flex flex-col items-center gap-4">
+<form action="./process/process_create_user.php" method="post" class="flex flex-col items-center gap-4">
   <h2 class="text-4xl font-bold text-center text-gray-800 mb-6">Inscription</h2>
   <label for="pseudo" class="text-xl">Entrez votre pseudo :</label>
   <input type="text" name="pseudo" id="pseudo"  class="text-center rounded-xl w-[20%] border-2 border-black" placeholder="Votre pseudo">

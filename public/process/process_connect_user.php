@@ -14,13 +14,13 @@ try {
        
         echo "Utilisateur connecté avec succès !";
         $_SESSION["user"] = $pseudo;
-        header("Location: ../pages/choixTheme.php");
+        header("Location: ../choixTheme.php");
         
         
     } else {
         
         $_SESSION["message"] = "Le pseudo '$pseudo' n'existe pas.";
-        header("Location: ../pages/connexion.php");
+        header("Location: ../connexion.php");
         exit;
 }
 } catch (PDOException $error) {
