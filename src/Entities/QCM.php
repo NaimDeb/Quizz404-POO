@@ -5,7 +5,7 @@ private int $id;
 private array $questions;
 private string $nom;
 
-	public function __construct($id, $questions, $nom) {
+	public function __construct($id, $nom) {
 		$this->id = $id;
 		$this->questions = [];
 		$this->nom = $nom;
