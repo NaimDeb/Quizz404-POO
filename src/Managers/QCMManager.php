@@ -24,7 +24,7 @@ class QcmManager {
             }
 
             $html .= '</ul>';
-            $html .= '<p class="explanation hidden text-lg text-gray-700 mt-4">' . $explanation . '</p>'; 
+            $html .= '<p class="explanation hidden text-lg text-gray-700 mt-4"><br> Explications: ' . $explanation . '</p>'; 
             $html .= '</div>';
         }
 

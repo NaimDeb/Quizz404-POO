@@ -1,7 +1,7 @@
 <?php
 include_once "../utils/autoloader.php";
 $qcm = new QCM(1, 'QCM de test');
-$question = new Question('Que signifie POO ?', "Explication de fou");
+$question = new Question('Que signifie POO ?');
 $answers = [
     new Answer('Programmation Orientée Objet', true),
     new Answer('Papillon Onirique Ostentatoire')
@@ -9,7 +9,8 @@ $answers = [
 $questions = [];
 
 $question->setAnswers($answers);
-$question->setExplanation('La réponse correcte est "Programmation Orientée Objet".');
+$answerExplanation = $question->getExplanation(); 
+
 $questions += [
     $question
 ];
