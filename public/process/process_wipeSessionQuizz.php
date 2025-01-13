@@ -8,6 +8,6 @@ unset($_SESSION["nbOfQuestions"]);
 unset($_SESSION["nbOfCorrectQuestions"]);
 
 
-header("location: ../pages/choixTheme.php");
+header("location: ../choixTheme.php");
 
 ?>

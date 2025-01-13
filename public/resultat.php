@@ -1,5 +1,4 @@
 <?php 
-session_start();
 
 if (!isset($_SESSION["nbOfQuestions"]) && !isset($_SESSION["nbOfCorrectQuestions"]))
 {
@@ -8,24 +7,14 @@ if (!isset($_SESSION["nbOfQuestions"]) && !isset($_SESSION["nbOfCorrectQuestions
 }
 
 
+include_once "./assets/components/htmlstart.php"
+
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../public/assets/css/style.css">
-  <link rel="stylesheet" href="../public/assets/css/output.css">
-  
-</head>
-<body>
-    
 
 
-<div class="bg-slate-100 w-[500px] h-[500px] m-auto mt-32 shadow-md p-8">
+<div class="bg-slate-100 w-[500px] h-[500px] m-auto shadow-md p-8">
 
     <h3 class="text-center">Résultats</h3>
 
@@ -40,8 +29,6 @@ if (!isset($_SESSION["nbOfQuestions"]) && !isset($_SESSION["nbOfCorrectQuestions
 
 </div>
 
-
-
-
-</body>
-</html>
+<?php
+include_once "./assets/components/htmlend.php"
+?>
