@@ -13,19 +13,11 @@ $questions = [
     $question
 ];
 
-$qcm->setQuestion($questions);
-var_dump($qcm);
+$qcm->setQuestion($questions);;
+
+
+include_once "./assets/components/htmlstart.php"
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
 <section>
     
     <h2><?= $qcm->getNom() ?></h2>
@@ -33,12 +25,14 @@ var_dump($qcm);
     <?php foreach($qcm->getQuestion() as $question){ ?>
         <h3><?= $question->getIntitule() ?></h3>
         <ul>
-            <?php foreach($question->getAnswers as $answer){ ?>
-                <li><?= $answer->getAnswers() ?></li>
+            <?php foreach($question->getAnswers() as $answer){ ?>
+                <li><?= $answer->getIntitule() ?></li>
             <?php } ?>   
         </ul>
 
     <?php } ?>
 </section>
-</body>
-</html>
+
+<?php
+include_once "./assets/components/htmlend.php"
+?>
