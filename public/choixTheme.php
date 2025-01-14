@@ -13,7 +13,8 @@ if (isset($_SESSION["titre"])) {
     header("location: ./process/process_wipeSessionQuizz.php");
   }
 
+echo '<div class="pt-[150px]">';
 echo QcmManager::generateDisplayAllQuizzes($pdo);
-
+echo '</div>';
 include_once "./assets/components/htmlend.php"
 ?>

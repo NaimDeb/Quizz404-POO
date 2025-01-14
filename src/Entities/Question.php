@@ -65,8 +65,6 @@ class Question {
         return $this->id;
     }
 
-   
-
     /**
      * Get the value of imgUrl
      */ 
@@ -74,8 +72,6 @@ class Question {
     {
         return $this->imgUrl;
     }
-
-    
 }
 
 

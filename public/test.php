@@ -30,7 +30,7 @@ $qcm1->setQuestion($questions);
 include_once "./assets/components/htmlstart.php"
 ?>
 <?php
-echo QcmManager::generateDisplayIndividualQuizz($qcm1);
+echo QcmManager::generateDisplayIndividualQuizz(1,$pdo);
 
 ?>
 
