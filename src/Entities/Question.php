@@ -6,13 +6,19 @@ class Question {
     private string $intitule;
     private string $answerExplanation;
     private array $answers;
+    private int $id;
+    private int $quizz_id;
+    private string $imgUrl;
 
 
-    public function __construct(string $intitule, string $answerExplanation = "Pas d'explications")
+    public function __construct(string $intitule, string $answerExplanation = "Pas d'explications", $id = 0, $quizz_id = 0, $imgUrl = "Pas d'image")
     {
         $this->intitule = $intitule;
         $this->answerExplanation = $answerExplanation;
         $this->answers = [];
+        $this->id = $id;
+        $this->quizz_id = $quizz_id;
+        $this->imgUrl = $imgUrl;
         
     }
 
@@ -49,7 +55,6 @@ class Question {
         $this->answerExplanation = $explanation;
         return $this;
     }
-
 
 
 }

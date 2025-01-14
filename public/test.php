@@ -1,9 +1,22 @@
 <?php
 include_once "../utils/autoloader.php";
 require("../utils/connect-db.php");
+$qcmRepo = new QCMRepository($pdo);
 
-$qcmrepo = new QCMRepository($pdo);
-var_dump($qcmrepo->findById(2));
+$qcm1 = $qcmRepo->findById(1);
+
+$questionRepo = new QuestionRepository($pdo);
+
+// retourne un array
+$questions = $questionRepo->findAllByQuizzId($qcm1->getId());
+
+$qcm1->setQuestion($questions);
+
+var_dump($qcm1);
+
+die();
+
+
 
 $qcm = new QCM(1, 'QCM de test');
 $question = new Question('Que signifie POO ?' ,"En fait c'est très simple t'es juste con");
