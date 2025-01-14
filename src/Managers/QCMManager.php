@@ -61,13 +61,6 @@ class QcmManager
 
             <div id="question-container">
                 <?php foreach ($qcm->getQuestion() as $index => $question): ?>
-                    
-                   
-    <img class="max-w-[300px] m-auto my-[10px]" src="<?= htmlspecialchars($question->getImgUrl()) ?>" alt="Image du quizz">
-
-
-
-
                     <div class="question-card bg-white p-6 mb-6 rounded-lg shadow-sm" data-question-index="<?= $index ?>" style="display: <?= $index === 0 ? 'block' : 'none' ?>;">
                         <h3 class="text-2xl font-semibold text-gray-700 mb-4"><?= htmlspecialchars($question->getIntitule()) ?></h3>
                         <?= $question->getImgUrl() ? '<img class="max-w-[300px] m-auto my-[10px]" src="' . htmlspecialchars($question->getImgUrl()) . '" alt="Image du quizz">' : '' ?>
@@ -83,8 +76,8 @@ class QcmManager
                     </div>
                 <?php endforeach; ?>
             </div>
-            <button id="next-button" class="hidden mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">Next</button>
 
+            <button id="next-button" class="hidden mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">Next</button>
         </div>
 
         <script>
