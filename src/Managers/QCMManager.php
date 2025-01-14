@@ -1,57 +1,95 @@
 <?php
 
+// ! erreur de merde
 require_once "../utils/connect-db.php";
 require_once "../utils/autoloader.php";
 
-class QcmManager {
+class QcmManager
+{
 
 
-    public static function generateDisplayAllQuizzes(PDO $pdo){
+    public static function generateDisplayAllQuizzes(PDO $pdo)
+    {
         $qcmRepo = new QCMRepository($pdo);
         $allQCM = $qcmRepo->getAllQuizz();
-        
+
         ob_start(); ?>
 
-            <h1 class="text-5xl font-first-font text-center">CHOISI TON THÈME !</h1>
+        <h1 class="text-5xl font-first-font text-center">CHOISI TON THÈME !</h1>
 
-            <div class="flex justify-center flex-wrap pt-6 gap-8">
+        <div class="flex justify-center flex-wrap pt-6 gap-8">
             <?php
             foreach ($allQCM as $QCM) {
-            ?> 
-            <a class="size-[300px] hover:scale-110 transition-all border-black border-[2px]" href="quizz?id=<?= htmlspecialchars($QCM->getId()) ?>"><img src="<?= htmlspecialchars($QCM->getImg()) ?>" alt=""></a>
-            <?php 
-            } 
             ?>
-            </div>
+                <a class="size-[300px] hover:scale-110 transition-all border-black border-[2px]" href="quizz?id=<?= htmlspecialchars($QCM->getId()) ?>"><img src="<?= htmlspecialchars($QCM->getImg()) ?>" alt=""></a>
+            <?php
+            }
+            ?>
+        </div>
 
-        <?php 
+    <?php
         return ob_get_clean();
-
-
     }
-  
-    public function generateDisplayIndividualQuizz(QCM $qcm){
 
-        ob_start(); 
-?> 
+
+    private static function remplirQcm(QCM $qcm, PDO $pdo)
+    {
+
+        $questionRepo = new QuestionRepository($pdo);
+        $reponseRepo = new AnswerRepository($pdo);
+
+        // retourne un array de toutes les questions de l'id du qcm
+        $questions = $questionRepo->findAllByQuizzId($qcm->getId());
+
+        foreach ($questions as $question) {
+            // Retourne un array de ttes les réponses de l'id de la question
+            $reponses = $reponseRepo->findAllByQuestionId($question->getId());
+
+            // Les set dans la question
+            $question->setAnswers($reponses);
+        }
+
+        // Met ttes les questions dans QCM
+        $qcm->setQuestion($questions);
+
+        return $qcm;
+    }
+
+
+
+    public static function generateDisplayIndividualQuizz(int $id, PDO $pdo)
+    {
+
+        $qcmRepo = new QCMRepository($pdo);
+
+        // On crée l'objet QCM 
+        $qcm = $qcmRepo->findById($id);
+
+
+        $qcm = self::remplirQcm($qcm, $pdo);
+
+
+
+        ob_start();
+    ?>
         <!-- Initialisation du HTML -->
         <div class="container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg text-center">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6"><?= htmlspecialchars($qcm->getNom()) ?></h2>
 
             <div id="question-container">
                 <?php foreach ($qcm->getQuestion() as $index => $question): ?>
-                <div class="question-card bg-white p-6 mb-6 rounded-lg shadow-sm" data-question-index="<?= $index ?>" style="display: <?= $index === 0 ? 'block' : 'none' ?>;">
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4"><?= htmlspecialchars($question->getIntitule()) ?></h3>
-                    <ul class="flex justify-center gap-4 space-y-2 flex-col">
-                    <?php foreach ($question->getAnswers() as $answer): ?>
-                        <li class="answer-item text-lg text-gray-600 p-2 border border-gray-300 rounded-lg w-[100%] mx-auto cursor-pointer" data-is-right="<?= $answer->getisRightAnswer() ? 'true' : 'false' ?>" data-answer="<?= htmlspecialchars($answer->getIntitule()) ?>">
-                        <?= htmlspecialchars($answer->getIntitule()) ?>
-                        </li>
-                    <?php endforeach; ?>
-                    </ul>
-                    <p class="correct-answer text-lg text-gray-600 mt-4 hidden">La bonne réponse est : <span class="correct-answer-text"></span></p>
-                    <p class="explanation text-lg text-gray-600 mt-4 hidden"><?= htmlspecialchars($question->getExplanation()) ?></p>
-                </div>
+                    <div class="question-card bg-white p-6 mb-6 rounded-lg shadow-sm" data-question-index="<?= $index ?>" style="display: <?= $index === 0 ? 'block' : 'none' ?>;">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-4"><?= htmlspecialchars($question->getIntitule()) ?></h3>
+                        <ul class="flex justify-center gap-4 space-y-2 flex-col">
+                            <?php foreach ($question->getAnswers() as $answer): ?>
+                                <li class="answer-item text-lg text-gray-600 p-2 border border-gray-300 rounded-lg w-[100%] mx-auto cursor-pointer" data-is-right="<?= $answer->getisRightAnswer() ? 'true' : 'false' ?>" data-answer="<?= htmlspecialchars($answer->getIntitule()) ?>">
+                                    <?= htmlspecialchars($answer->getIntitule()) ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <p class="correct-answer text-lg text-gray-600 mt-4 hidden">La bonne réponse est : <span class="correct-answer-text"></span></p>
+                        <p class="explanation text-lg text-gray-600 mt-4 hidden"><?= htmlspecialchars($question->getExplanation()) ?></p>
+                    </div>
                 <?php endforeach; ?>
             </div>
 
@@ -64,7 +102,9 @@ class QcmManager {
             const questionContainer = document.getElementById("question-container");
             let currentQuestionIndex = 0;
 
-            answers.forEach(answer => {answer.addEventListener("click", handleClickAnswer)});
+            answers.forEach(answer => {
+                answer.addEventListener("click", handleClickAnswer)
+            });
 
             function handleClickAnswer(event) {
                 const isRight = this.getAttribute("data-is-right") === "true";
@@ -90,8 +130,8 @@ class QcmManager {
                 nextButton.classList.remove("hidden");
             }
 
-            nextButton.addEventListener("click", handleClickNext); 
-            
+            nextButton.addEventListener("click", handleClickNext);
+
             function handleClickNext(event) {
                 const currentQuestion = document.querySelector(`.question-card[data-question-index="${currentQuestionIndex}"]`);
                 currentQuestion.style.display = 'none';
@@ -106,7 +146,9 @@ class QcmManager {
                     nextButton.style.display = 'none';
                 }
 
-                answers.forEach(answer => {answer.addEventListener("click", handleClickAnswer)});
+                answers.forEach(answer => {
+                    answer.addEventListener("click", handleClickAnswer)
+                });
             }
         </script>
 
