@@ -32,7 +32,6 @@ class QCMRepository {
 
 }
 
-// Connexion PDO
-require("./utils/connect-db.php");
+
 
 ?>
