@@ -6,7 +6,7 @@ private string $nom;
 private string $img;
 private array $questions;
 
-	public function __construct($id, $nom, $img = "https://cdn-icons-png.flaticon.com/512/25/25400.png") {
+	public function __construct($id, $nom, $img) {
 		$this->id = $id;
 		$this->questions = [];
 		$this->nom = $nom;
