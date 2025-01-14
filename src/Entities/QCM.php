@@ -3,12 +3,14 @@
 class QCM {
 private int $id;
 private string $nom;
+private string $img;
 private array $questions;
 
-	public function __construct($id, $nom) {
+	public function __construct($id, $nom, $img = "https://cdn-icons-png.flaticon.com/512/25/25400.png") {
 		$this->id = $id;
 		$this->questions = [];
 		$this->nom = $nom;
+        $this->img = $img;
 	}
 
     public function getId(): int {
@@ -19,9 +21,13 @@ private array $questions;
         return $this->questions;
     }
     
-        public function getNom(): string {
-            return $this->nom;
-        }
+    public function getNom(): string {
+        return $this->nom;
+    }
+
+    public function getImg(): string {
+        return $this->img;
+    }
 
     public function setQuestion(array $questions): self {
         foreach($questions as $question){

@@ -14,7 +14,7 @@ class QCMRepository {
 
     public function findById(int $id): ?QCM {
 
-        $stmt = $this->db->prepare("SELECT * FROM quiz WHERE id = :id");
+        $stmt = $this->db->prepare("SELECT * FROM quiz WHERE id = :id LIMIT 1");
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -25,7 +25,6 @@ class QCMRepository {
         }
 
 
-        // ! Changer le map en ce que naim va mettre dans QCMMapper
         return $this->mapper->mapToObject($data);
 
 

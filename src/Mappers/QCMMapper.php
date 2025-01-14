@@ -5,7 +5,12 @@ class QcmMapper {
 
 
     public function mapToObject(array $data): QCM {
-        return new QCM($data["id"], $data["titre"]);
+
+        $id = $data["id"];
+        $titre = $data["titre"];
+        $imgUrl = $data["img"];
+
+        return new QCM($id, $titre, $imgUrl);
     }
 
     
