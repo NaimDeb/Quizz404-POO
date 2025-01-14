@@ -4,36 +4,14 @@ class QuestionMapper {
 
     public function mapToObject(array $data): Question {
 
+        // todo : Regarder si on utilise bien tout ça
         $id = $data["id"];
-        $id_quizz = $data["id_quiz"];
+        // $id_quizz = $data["id_quiz"];
         $intitule = $data["question"];
         $imgUrl = $data["img"];
 
-        return new Question($intitule, "Pas d'explications", $id, $id_quizz, $imgUrl);
+        return new Question($id, $intitule, $imgUrl, "Pas d'explications");
     }
-
-
-    // public Function mapAllQuestionsToArray (Question ...$questions) {
-
-
-    //     $arrayQuestions = [];
-
-    //     foreach ($questions as $question) {
-    //         $arrayQuestions[] = $question;
-    //     }
-
-    //     return $arrayQuestions;
-
-    // }
-
-
-    // public function mapToQCM(QCM $qcm, Question $question) {
-
-
-
-
-    // }
-
     
 }
 ?>

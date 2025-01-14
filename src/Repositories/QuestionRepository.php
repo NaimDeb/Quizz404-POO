@@ -13,25 +13,9 @@ class QuestionRepository {
     }
 
 
-    public function findById(int $id): ?Question {
-
-        $stmt = $this->db->prepare("SELECT * FROM question WHERE id = :id");
-        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$data) {
-            return null;
-        }
-
-
-        return $this->mapper->mapToObject($data);
-
-
-    }
-
-
+    /**
+     * Récupère toutes les questions ayant le même quiz_id et retourne un array
+     */
     public function findAllByQuizzId(int $idQuizz): array {
 
         $stmt = $this->db->prepare("SELECT * FROM question WHERE id_quiz = :idQuizz");

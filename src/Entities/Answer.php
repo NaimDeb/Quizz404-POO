@@ -1,16 +1,16 @@
 <?php 
 
 class Answer{
-private int $id;
+    private int $id;
     private string $intitule;
     private bool $isRightAnswer;
 
 
-    public function __construct(string $intitule ,bool $isRightAnswer = false, int $id = 0)
+    public function __construct(int $id, string $intitule ,bool $isRightAnswer = false)
     {
+        $this->id = $id;
         $this->intitule = $intitule;
         $this->isRightAnswer = $isRightAnswer;
-        $this->id = $id;
         
     }
 
