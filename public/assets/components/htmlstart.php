@@ -30,6 +30,7 @@ session_start();
         </a>
 
         <div class="w-[50%] p-5 items-center text-center ">
+          <a href="./index.php">
           <h2 class="text-8xl font-extrabold font-first-font">
             <span>
               <
@@ -38,6 +39,7 @@ session_start();
                 <span class="text-[#8344bc]">405</span>
                 <span>/></span>
           </h2>
+          </a>
         </div>
 
 
