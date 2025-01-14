@@ -26,7 +26,7 @@ class QCMRepository {
 
 
         // ! Changer le map en ce que naim va mettre dans QCMMapper
-        // return $this->mapper->map($data);
+        return $this->mapper->mapToObject($data);
 
 
     }
