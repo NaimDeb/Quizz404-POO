@@ -24,7 +24,7 @@ $answers2 = [
 ];
 
 $question2->setAnswers($answers2);
-$question2->setExplanation('La réponse correcte est "Karl".');
+
 $questions[] = $question2;
 
 
