@@ -7,8 +7,8 @@ class QuestionRepository {
     private PDO $db;
     private QuestionMapper $mapper;
 
-    public function __construct(PDO $db){
-        $this->db = $db;
+    public function __construct(){
+        $this->db = Database::getInstance();
         $this->mapper = new QuestionMapper();
     }
 
@@ -22,7 +22,7 @@ class QuestionRepository {
         $stmt->bindParam(":idQuizz", $idQuizz, PDO::PARAM_INT);
         $stmt->execute();
 
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $data = $stmt->fetchAll();
 
         if (!$data) {
             return [];

@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once '../../utils/connect-db.php';
 $pseudo = $_POST["pseudo"];
 
 

@@ -1,9 +1,8 @@
 <?php
 include_once "../utils/autoloader.php";
-require("../utils/connect-db.php");
-$qcmRepo = new QCMRepository($pdo);
-$questionRepo = new QuestionRepository($pdo);
-$reponseRepo = new AnswerRepository($pdo);
+$qcmRepo = new QCMRepository();
+$questionRepo = new QuestionRepository();
+$reponseRepo = new AnswerRepository();
 
 // On crée l'objet QCM 
 $qcm1 = $qcmRepo->findById(1);

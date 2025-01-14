@@ -40,10 +40,10 @@ private array $questions;
     }
 
 
-    public function remplirQcm(PDO $pdo)
+    public function remplirQcm()
     {
-        $questionRepo = new QuestionRepository($pdo);
-        $reponseRepo = new AnswerRepository($pdo);
+        $questionRepo = new QuestionRepository();
+        $reponseRepo = new AnswerRepository();
 
         $questions = $questionRepo->findAllByQuizzId($this->id);
 

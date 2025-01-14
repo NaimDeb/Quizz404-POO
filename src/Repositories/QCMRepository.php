@@ -6,8 +6,8 @@ class QCMRepository {
     private PDO $db;
     private QCMMapper $mapper;
 
-    public function __construct(PDO $db){
-        $this->db = $db;
+    public function __construct(){
+        $this->db = Database::getInstance();
         $this->mapper = new QCMMapper();
     }
 
@@ -18,7 +18,7 @@ class QCMRepository {
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        $data = $stmt->fetch();
         
 
         if (!$data) {
@@ -35,7 +35,7 @@ class QCMRepository {
         $stmt = $this->db->prepare("SELECT * FROM quiz");
         $stmt->execute();
 
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $data = $stmt->fetchAll();
 
         $arrayData = [];
 

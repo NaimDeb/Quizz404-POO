@@ -1,6 +1,6 @@
 <?php
 include_once "./assets/components/htmlstart.php";
-include_once "../utils/connect-db.php";
+
 
 if (isset($_SESSION["user"])){
     $user = $_SESSION["user"];
@@ -14,7 +14,7 @@ if (isset($_SESSION["titre"])) {
   }
 
 echo '<div class="pt-[150px]">';
-echo QcmManager::generateDisplayAllQuizzes($pdo);
+echo QcmManager::generateDisplayAllQuizzes();
 echo '</div>';
 include_once "./assets/components/htmlend.php"
 ?>

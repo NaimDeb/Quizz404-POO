@@ -1,16 +1,14 @@
 <?php
 
-// ! erreur de merde
-require_once "../utils/connect-db.php";
 require_once "../utils/autoloader.php";
 
 class QcmManager
 {
 
 
-    public static function generateDisplayAllQuizzes(PDO $pdo)
+    public static function generateDisplayAllQuizzes()
     {
-        $qcmRepo = new QCMRepository($pdo);
+        $qcmRepo = new QCMRepository();
         $allQCM = $qcmRepo->getAllQuizz();
 
         ob_start(); ?>
@@ -33,11 +31,13 @@ class QcmManager
 
 
 
-    public static function generateDisplayIndividualQuizz(int $id, PDO $pdo)
+    public static function generateDisplayIndividualQuizz(int $id)
     {
-        $qcmRepo = new QCMRepository($pdo);
+        $qcmRepo = new QCMRepository();
+        // On crée un QCM
         $qcm = $qcmRepo->findById($id);
-        $qcm = $qcm->remplirQcm($pdo);
+        // On remplit le QCM de ses questions et réponses
+        $qcm = $qcm->remplirQcm();
 
         ob_start();
     ?>
