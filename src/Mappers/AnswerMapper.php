@@ -2,7 +2,7 @@
 
 class AnswerMapper {
 
-    public function mapToObject(array $data): Answer {
+    public static function mapToObject(array $data): Answer {
 
         $id = $data["id_question"];
         $reponse = $data["intitule"];

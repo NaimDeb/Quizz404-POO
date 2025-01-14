@@ -1,8 +1,36 @@
 <?php
 
+require_once "../utils/connect-db.php";
+require_once "../utils/autoloader.php";
+
 class QcmManager {
+
+
+    public static function generateDisplayAllQuizzes(PDO $pdo){
+        $qcmRepo = new QCMRepository($pdo);
+        $allQCM = $qcmRepo->getAllQuizz();
+        
+        ob_start(); ?>
+
+            <h1 class="text-5xl font-first-font text-center">CHOISI TON THÈME !</h1>
+
+            <div class="flex justify-center flex-wrap pt-6 gap-8">
+            <?php
+            foreach ($allQCM as $QCM) {
+            ?> 
+            <a class="size-[300px] hover:scale-110 transition-all border-black border-[2px]" href="quizz?id=<?= htmlspecialchars($QCM->getId()) ?>"><img src="<?= htmlspecialchars($QCM->getImg()) ?>" alt=""></a>
+            <?php 
+            } 
+            ?>
+            </div>
+
+        <?php 
+        return ob_get_clean();
+
+
+    }
   
-    public function generateDisplay(QCM $qcm){
+    public function generateDisplayIndividualQuizz(QCM $qcm){
 
         ob_start(); 
 ?> 

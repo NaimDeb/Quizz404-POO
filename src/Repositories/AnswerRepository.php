@@ -9,7 +9,6 @@ class AnswerRepository {
 
     public function __construct(PDO $db){
         $this->db = $db;
-        $this->mapper = new AnswerMapper();
     }
 
 
@@ -49,7 +48,7 @@ class AnswerRepository {
 
         foreach ($data as $answer) {
 
-            $objectAnswer = $this->mapper->mapToObject($answer);
+            $objectAnswer = AnswerMapper::mapToObject($answer);
 
             $arrayAnswers[] = $objectAnswer;
             
