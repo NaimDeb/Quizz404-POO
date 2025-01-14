@@ -16,7 +16,7 @@ var_dump($qcm1);
 
 
 $reponseRepo = new AnswerRepository($pdo);
- $reponses 
+ 
 
 die();
 
