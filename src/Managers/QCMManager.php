@@ -31,58 +31,42 @@ class QcmManager
         return ob_get_clean();
     }
 
-
     private static function remplirQcm(QCM $qcm, PDO $pdo)
     {
-
         $questionRepo = new QuestionRepository($pdo);
         $reponseRepo = new AnswerRepository($pdo);
 
-        // retourne un array de toutes les questions de l'id du qcm
         $questions = $questionRepo->findAllByQuizzId($qcm->getId());
 
         foreach ($questions as $question) {
-            // Retourne un array de ttes les réponses de l'id de la question
             $reponses = $reponseRepo->findAllByQuestionId($question->getId());
-
-            // Les set dans la question
             $question->setAnswers($reponses);
         }
 
-        // Met ttes les questions dans QCM
         $qcm->setQuestion($questions);
 
         return $qcm;
     }
 
-
-
     public static function generateDisplayIndividualQuizz(int $id, PDO $pdo)
     {
-
         $qcmRepo = new QCMRepository($pdo);
-
-        // On crée l'objet QCM 
         $qcm = $qcmRepo->findById($id);
-
-
         $qcm = self::remplirQcm($qcm, $pdo);
-
-
 
         ob_start();
     ?>
-        <!-- Initialisation du HTML -->
-        <div class="container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg text-center">
+        <div class="pt-[70px] container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg text-center overflow-auto max-h-screen">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6"><?= htmlspecialchars($qcm->getNom()) ?></h2>
 
             <div id="question-container">
                 <?php foreach ($qcm->getQuestion() as $index => $question): ?>
                     <div class="question-card bg-white p-6 mb-6 rounded-lg shadow-sm" data-question-index="<?= $index ?>" style="display: <?= $index === 0 ? 'block' : 'none' ?>;">
                         <h3 class="text-2xl font-semibold text-gray-700 mb-4"><?= htmlspecialchars($question->getIntitule()) ?></h3>
-                        <ul class="flex justify-center gap-4 space-y-2 flex-col">
+                        <?= $question->getImgUrl() ? '<img class="max-w-[300px] m-auto my-[10px]" src="' . htmlspecialchars($question->getImgUrl()) . '" alt="Image du quizz">' : '' ?>
+                        <ul class="flex flex-wrap justify-center gap-4">
                             <?php foreach ($question->getAnswers() as $answer): ?>
-                                <li class="answer-item text-lg text-gray-600 p-2 border border-gray-300 rounded-lg w-[100%] mx-auto cursor-pointer" data-is-right="<?= $answer->getisRightAnswer() ? 'true' : 'false' ?>" data-answer="<?= htmlspecialchars($answer->getIntitule()) ?>">
+                                <li class="answer-item text-lg text-gray-600 p-2 border border-gray-300 rounded-lg cursor-pointer" data-is-right="<?= $answer->getisRightAnswer() ? 'true' : 'false' ?>" data-answer="<?= htmlspecialchars($answer->getIntitule()) ?>">
                                     <?= htmlspecialchars($answer->getIntitule()) ?>
                                 </li>
                             <?php endforeach; ?>
@@ -156,4 +140,3 @@ class QcmManager
         return ob_get_clean();
     }
 }
-?>

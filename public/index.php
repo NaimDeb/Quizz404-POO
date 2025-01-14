@@ -3,7 +3,7 @@ include_once "./assets/components/htmlstart.php"
 ?>
 
 
-<div class="flex flex-col gap-9 text-center w-100 items-center">
+<div class="pt-[250px] flex flex-col gap-9 text-center w-100 items-center">
 
   <h1 class="font-first-font text-5xl">Bienvenue sur QUIZ405 inscrivez vous ou connecter vous pour jouer !</h1>
 
@@ -15,7 +15,7 @@ include_once "./assets/components/htmlstart.php"
   ?>
 
 
-  <div class="flex gap-4 w-full justify-center text-center">
+  <div class="flex gap-4  w-full justify-center text-center">
     <a class="text-white font-first-font font-extrabold hover:scale-110 transition-all" href="./inscription.php">
       <div class="w-[9%] h-[70px] items-center flex justify-center btn">
         Inscription

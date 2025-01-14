@@ -57,7 +57,7 @@ session_start();
     </div>
     <div id="stripe-container">
       <div id="stripe-pattern">
-        <div class="h-[100%] pt-[250px] m-auto max-w-[100vw]">
+        <div class="h-screen m-auto max-w-[100vw]">
         <!-- METTEZ VOTRE HTML ICI -->
 
         

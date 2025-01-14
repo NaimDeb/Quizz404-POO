@@ -64,6 +64,14 @@ class Question {
     {
         return $this->id;
     }
+
+    /**
+     * Get the value of imgUrl
+     */ 
+    public function getImgUrl()
+    {
+        return $this->imgUrl;
+    }
 }
 
 

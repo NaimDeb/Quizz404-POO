@@ -2,7 +2,7 @@
 include_once "./assets/components/htmlstart.php"
 ?>
 
-<div class="w-full">
+<div class="w-full pt-[250px]">
 
 
 
