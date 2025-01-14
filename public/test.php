@@ -6,7 +6,7 @@ $questionRepo = new QuestionRepository($pdo);
 $reponseRepo = new AnswerRepository($pdo);
 
 // On crée l'objet QCM 
-$qcm1 = $qcmRepo->findById(2);
+$qcm1 = $qcmRepo->findById(1);
  
 // retourne un array de toutes les questions de l'id du qcm
 $questions = $questionRepo->findAllByQuizzId($qcm1->getId());

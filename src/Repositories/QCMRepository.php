@@ -30,6 +30,23 @@ class QCMRepository {
 
     }
 
+
+    public function getAllQuizz() {
+        $stmt = $this->db->prepare("SELECT * FROM quiz");
+        $stmt->execute();
+
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $arrayData = [];
+
+        foreach ($data as $quizz) {
+            $arrayData[] = $this->mapper->mapToObject($quizz);
+        }
+
+        return $arrayData;
+
+    }
+
 }
 
 

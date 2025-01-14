@@ -1,11 +1,42 @@
 <?php
 
+require_once "../utils/connect-db.php";
+require_once "../utils/autoloader.php";
+
 class QcmManager {
+
+
+    public static function generateDisplayAllQuizzes(PDO $pdo){
+        $qcmRepo = new QCMRepository($pdo);
+        $allQCM = $qcmRepo->getAllQuizz();
+        
+        ob_start(); ?>
+
+            <h1 class="text-5xl font-first-font text-center">CHOISI TON THÈME !</h1>
+
+            <div class="flex justify-center flex-wrap pt-6 gap-8">
+            <?php
+            foreach ($allQCM as $QCM) {
+            ?> 
+            <a class="size-[300px] hover:scale-110 transition-all border-black border-[2px]" href="quizz?id=<?= htmlspecialchars($QCM->getId()) ?>"><img src="<?= htmlspecialchars($QCM->getImg()) ?>" alt=""></a>
+            <?php 
+            } 
+            ?>
+            </div>
+
+        <?php 
+        return ob_get_clean();
+
+
+    }
   
-    public function generateDisplay(QCM $qcm): string {
-        // Initialisation du HTML
-        $html = '<div class="container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg text-center">';
-        $html .= '<h2 class="text-3xl font-bold text-center text-gray-800 mb-6">' . htmlspecialchars($qcm->getNom()) . '</h2>';
+    public function generateDisplayIndividualQuizz(QCM $qcm){
+
+        ob_start(); 
+?> 
+        <!-- Initialisation du HTML -->
+        <div class="container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg text-center">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6"><?= htmlspecialchars($qcm->getNom()) ?></h2>
 
         // Parcours des questions du QCM
         foreach ($qcm->getQuestion() as $question) {
