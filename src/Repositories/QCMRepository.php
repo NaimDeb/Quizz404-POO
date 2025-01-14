@@ -19,6 +19,7 @@ class QCMRepository {
         $stmt->execute();
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        
 
         if (!$data) {
             return null;
@@ -27,12 +28,10 @@ class QCMRepository {
 
         return $this->mapper->mapToObject($data);
 
-
     }
 
 }
 
-// Connexion PDO
-require("./utils/connect-db.php");
+
 
 ?>

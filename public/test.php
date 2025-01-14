@@ -1,5 +1,10 @@
 <?php
 include_once "../utils/autoloader.php";
+require("../utils/connect-db.php");
+
+$qcmrepo = new QCMRepository($pdo);
+var_dump($qcmrepo->findById(2));
+
 $qcm = new QCM(1, 'QCM de test');
 $question = new Question('Que signifie POO ?' ,"En fait c'est très simple t'es juste con");
 $answers = [
