@@ -13,23 +13,23 @@ class AnswerRepository {
     }
 
 
-    public function findById(int $id): ?Answer {
+    // public function findById(int $id): ?Answer {
 
-        $stmt = $this->db->prepare("SELECT * FROM answer WHERE id = :id");
-        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-        $stmt->execute();
+    //     $stmt = $this->db->prepare("SELECT * FROM answer WHERE id = :id");
+    //     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    //     $stmt->execute();
 
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$data) {
-            return null;
-        }
-
-
-        return $this->mapper->mapToObject($data);
+    //     if (!$data) {
+    //         return null;
+    //     }
 
 
-    }
+    //     return $this->mapper->mapToObject($data);
+
+
+    // }
 
 
     public function findAllByQuestionId(int $idQuestion): array {

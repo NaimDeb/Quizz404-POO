@@ -7,18 +7,17 @@ class Question {
     private string $answerExplanation;
     private array $answers;
     private int $id;
-    private int $quizz_id;
     private string $imgUrl;
 
 
-    public function __construct(string $intitule, string $answerExplanation = "Pas d'explications", $id = 0, $quizz_id = 0, $imgUrl = "Pas d'image")
+    public function __construct(int $id, string $intitule, $imgUrl = null,string $answerExplanation = "Pas d'explications")
     {
-        $this->intitule = $intitule;
-        $this->answerExplanation = $answerExplanation;
-        $this->answers = [];
         $this->id = $id;
-        $this->quizz_id = $quizz_id;
+        $this->intitule = $intitule;
         $this->imgUrl = $imgUrl;
+        $this->answerExplanation = $answerExplanation;
+
+        $this->answers = [];
         
     }
 
@@ -57,6 +56,14 @@ class Question {
     }
 
 
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
 }
 
 
