@@ -5,9 +5,9 @@ $pseudo = $_POST["pseudo"];
 
 $sql = "SELECT pseudo FROM user WHERE pseudo = :pseudo ;";
 try {
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam('pseudo', $pseudo, PDO::PARAM_STR);
-    $stmt->execute();
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->bindParam('pseudo', $pseudo, PDO::PARAM_STR);
+    // $stmt->execute();
     
     if ($stmt->fetch()) {
        

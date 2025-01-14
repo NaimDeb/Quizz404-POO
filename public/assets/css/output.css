@@ -608,11 +608,6 @@ video {
   margin-bottom: 10px;
 }
 
-.my-auto{
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
 .mb-4{
   margin-bottom: 1rem;
 }
@@ -623,14 +618,6 @@ video {
 
 .mt-4{
   margin-top: 1rem;
-}
-
-.mt-\[200px\]{
-  margin-top: 200px;
-}
-
-.mt-\[100px\]{
-  margin-top: 100px;
 }
 
 .block{
@@ -847,26 +834,6 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.py-\[20px\]{
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.py-\[\]{
-  padding-top: ;
-  padding-bottom: ;
-}
-
-.py-\[50\%\]{
-  padding-top: 50%;
-  padding-bottom: 50%;
-}
-
-.py-\[20\%\]{
-  padding-top: 20%;
-  padding-bottom: 20%;
-}
-
 .pt-16{
   padding-top: 4rem;
 }
@@ -879,40 +846,12 @@ video {
   padding-top: 1.5rem;
 }
 
-.pt-\[250px\]{
-  padding-top: 250px;
-}
-
-.pt-\[200px\]{
-  padding-top: 200px;
-}
-
-.pt-\[20px\]{
-  padding-top: 20px;
-}
-
-.pt-\[100px\]{
-  padding-top: 100px;
-}
-
 .pt-\[150px\]{
   padding-top: 150px;
 }
 
-.pt-\[\]{
-  padding-top: ;
-}
-
-.pt-\[30px\]{
-  padding-top: 30px;
-}
-
-.pt-\[300px\]{
-  padding-top: 300px;
-}
-
-.pt-\[px\]{
-  padding-top: px;
+.pt-\[250px\]{
+  padding-top: 250px;
 }
 
 .pt-\[70px\]{
