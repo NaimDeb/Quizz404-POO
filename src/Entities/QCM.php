@@ -38,6 +38,27 @@ private array $questions;
         $this->questions = $questions;
         return $this;
     }
+
+
+    public function remplirQcm(PDO $pdo)
+    {
+        $questionRepo = new QuestionRepository($pdo);
+        $reponseRepo = new AnswerRepository($pdo);
+
+        $questions = $questionRepo->findAllByQuizzId($this->id);
+
+        foreach ($questions as $question) {
+            $reponses = $reponseRepo->findAllByQuestionId($question->getId());
+            $question->setAnswers($reponses);
+        }
+
+        $this->questions = $questions;
+
+        return $this;
+    }
+
+
+
 }
 ?>
 

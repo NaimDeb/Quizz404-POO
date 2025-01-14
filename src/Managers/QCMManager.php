@@ -31,28 +31,13 @@ class QcmManager
         return ob_get_clean();
     }
 
-    private static function remplirQcm(QCM $qcm, PDO $pdo)
-    {
-        $questionRepo = new QuestionRepository($pdo);
-        $reponseRepo = new AnswerRepository($pdo);
 
-        $questions = $questionRepo->findAllByQuizzId($qcm->getId());
-
-        foreach ($questions as $question) {
-            $reponses = $reponseRepo->findAllByQuestionId($question->getId());
-            $question->setAnswers($reponses);
-        }
-
-        $qcm->setQuestion($questions);
-
-        return $qcm;
-    }
 
     public static function generateDisplayIndividualQuizz(int $id, PDO $pdo)
     {
         $qcmRepo = new QCMRepository($pdo);
         $qcm = $qcmRepo->findById($id);
-        $qcm = self::remplirQcm($qcm, $pdo);
+        $qcm = $qcm->remplirQcm($pdo);
 
         ob_start();
     ?>
