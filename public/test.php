@@ -6,13 +6,17 @@ $qcmRepo = new QCMRepository($pdo);
 $qcm1 = $qcmRepo->findById(1);
 
 $questionRepo = new QuestionRepository($pdo);
-
+ 
 // retourne un array
 $questions = $questionRepo->findAllByQuizzId($qcm1->getId());
 
 $qcm1->setQuestion($questions);
 
 var_dump($qcm1);
+
+
+$reponseRepo = new AnswerRepository($pdo);
+ $reponses 
 
 die();
 

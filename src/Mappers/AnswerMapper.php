@@ -1,14 +1,14 @@
 <?php
 
-class QcmAnswerMapper {
+class AnswerMapper {
 
-    public function mapToObject(array $data): QCM {
+    public function mapToObject(array $data): Answer {
 
-        $id = $data["id"];
-        $titre = $data["intitule"];
+        $id = $data["id_question"];
+        $reponse = $data["intitule"];
         $correct = $data["is_correct"];
 
-        return new QCM($id, $titre, $correct);
+        return new Answer($id, $reponse, $correct);
     }
 
     

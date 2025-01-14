@@ -1,46 +1,68 @@
 <?php 
 
 
+
 class AnswerRepository {
 
     private PDO $db;
-    private QCMMapper $mapper;
+    private AnswerMapper $mapper;
 
     public function __construct(PDO $db){
         $this->db = $db;
-        $this->mapper = new QCMMapper();
+        $this->mapper = new AnswerMapper();
     }
-    public function findById(int $questionId): array {
-        $stmt = $this->db->prepare("SELECT * FROM answer WHERE id_question = :id");
-        $stmt->bindParam(":id", $questionId, PDO::PARAM_INT);
+
+
+    public function findById(int $id): ?Answer {
+
+        $stmt = $this->db->prepare("SELECT * FROM answer WHERE id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
-        
-    
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($data);
-    
+
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
         if (!$data) {
-            return []; // Retourne un tableau vide si aucune donnée trouvée
+            return null;
         }
-    
-        // Transformation des données en objets Answer
-        $answers = [];
-        foreach ($data as $row) {
-            $answer = new Answer($intitule = $row['intitule'], $isRightAnswer = $row['is_correct'], $id = $row['id_quetion']);
-            $answer->setId($row['id_question']);
-            $answer->setIntitule($row['intitule']);
-            $answer->setIsRightAnswer($row['is_correct']);
-            $answers[] = $answer;
-        }
-   
-        var_dump($answers);
-        return $answers;
-        
+
+
+        return $this->mapper->mapToObject($data);
+
+
     }
+
+
+    public function findAllByQuestionId(int $idQuestion): array {
+
+        $stmt = $this->db->prepare("SELECT * FROM answer WHERE id_question = :idQuestion");
+        $stmt->bindParam(":idQuestion", $idQuestion, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$data) {
+            return [];
+        }
+
+        $arrayAnswers = [];
+
+
+        foreach ($data as $answer) {
+
+            $objectAnswer = $this->mapper->mapToObject($answer);
+
+            $arrayAnswers[] = $objectAnswer;
+            
+        }
+
+        return $arrayAnswers;
     
+    }
+
 }
 
-// Connexion PDO
-require("../../utils/connect-db.php");
+
+?>
+
 
 ?>
