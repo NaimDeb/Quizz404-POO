@@ -31,7 +31,7 @@ include_once "./assets/components/htmlstart.php"
 ?>
 <?php
 $qcmManager = new QcmManager();
-echo $qcmManager->generateDisplay($qcm1);
+echo $qcmManager->generateDisplayIndividualQuizz($qcm1);
 
 ?>
 
