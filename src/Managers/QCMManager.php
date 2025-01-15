@@ -45,6 +45,7 @@ class QcmManager
     ?>
 
         <script src="./assets/scripts/quizz.js" defer></script>
+        <script> idQuizz = <?= $id ?> </script>
 
 
         <div class="pt-[70px] container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg overflow-y-scroll scroll-0 text-center max-h-[800px]">

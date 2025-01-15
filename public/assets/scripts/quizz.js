@@ -17,7 +17,10 @@ let timerInterval;
 let isTimerStopped = false;
 
 // Score de l'user
-$totalScore = 0;
+let totalScore = 0;
+
+let isBetterScore;
+let oldScore ;
 
 
 //Appelle startTimer pour la première question
@@ -75,7 +78,7 @@ nextButton.addEventListener("click", handleClickNext);
 
 
 // Fonction pour gérer le clic sur le bouton suivant
-function handleClickNext() {
+async function handleClickNext() {
     // Masquer la question actuelle
     const currentQuestion = document.querySelector(`.question-card[data-question-index="${currentQuestionIndex}"]`);
     currentQuestion.style.display = 'none'; 
@@ -91,11 +94,41 @@ function handleClickNext() {
     } else {
         // Afficher le score final
         document.getElementById("demo").style.display = 'none';
-        questionContainer.innerHTML = `
-            <h3 class="text-2xl font-semibold text-gray-700 mb-4">Quiz Fini !</h3>
-            <p class="text-lg text-gray-600 mt-4">Votre score final : <span class="font-bold"> ${$totalScore}</span> </p>
-            <p class="text-lg text-gray-600 mt-4"> <span class="font-bold"> ${score} </span> / ${questionContainer.children.length} bonnes réponses</p>
-        `;
+
+        fetch('./quizz.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                "score": totalScore,
+                "idQuizz": idQuizz
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // Convert response to text
+        })
+        .then(data => {
+            console.log('Raw Response:', data); // Log pour voir ce qui est reçu
+            const jsonData = JSON.parse(data); // Essayez de parser après validation
+            isBetterScore = jsonData["isBetterScore"];
+            oldScore = jsonData["oldScore"];
+            console.log('Success:', jsonData);
+
+            // Afficher le score final avec l'ancien score
+            questionContainer.innerHTML = `
+                <h3 class="text-2xl font-semibold text-gray-700 mb-4">Quiz Fini !</h3>
+                <p class="text-lg text-gray-600 mt-4">Votre score final : <span class="font-bold"> ${totalScore}</span> (Ancien score : <span class="font-bold">${oldScore}</span>)</p>
+                <p class="text-lg text-gray-600 mt-4"> <span class="font-bold"> ${score} </span> / ${questionContainer.children.length} bonnes réponses</p>
+            `;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
         nextButton.style.display = 'none';
     }
 
@@ -148,5 +181,5 @@ function myTimer() {
 
 function calculateScore() {
     const numberOfQuestions = questionContainer.children.length;
-    $totalScore += ((((timeRemaining / maxTimeRemaining) * 1000) + 1000) / (numberOfQuestions * 2));
+    totalScore += Math.floor(((((timeRemaining / maxTimeRemaining) * 1000) + 1000) / (numberOfQuestions * 2)));
 }

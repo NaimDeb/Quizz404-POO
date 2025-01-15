@@ -62,6 +62,35 @@ class UserManager{
         return htmlspecialchars(trim($data));
     }
 
+
+
+
+    public static function checkScore(int $userId, int $quizId, int $userScore): array {
+
+        $userRepo = new UserRepository;
+
+        $userOldScore = $userRepo->fetchScore($userId, $quizId);
+
+        if ($userOldScore) {
+            $userOldScore = $userOldScore["score"];
+        } else {
+            $userOldScore = 0;
+        }
+
+        $_SESSION["oldScore"] = $userOldScore;
+
+        $isBetterScore = false;
+        if ($userScore > $userOldScore) {
+            $userRepo->changeScore($userId, $quizId, $userScore);
+            $isBetterScore = true;
+        }
+
+        return [
+            'isBetterScore' => $isBetterScore,
+            'oldScore' => $userOldScore
+        ];
+    }
+
 }
 
 ?>
