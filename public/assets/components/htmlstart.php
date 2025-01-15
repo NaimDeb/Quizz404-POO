@@ -14,7 +14,7 @@ $isUserConnected = isset($_SESSION["user"]) ? true : false;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quizz404</title>
-  <link rel="icon" href="./image/_.ico">
+  <link rel="icon" href="./assets/image/_.ico">
   <link rel="stylesheet" href="./assets/css/output.css">
   <script src="./assets/scripts/header.js"></script>
   <style>
