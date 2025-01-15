@@ -48,7 +48,7 @@ $isUserConnected = isset($_SESSION["user"]) ? true : false;
         <div class="left">
           <?php if (!$isUserConnected): ?>
             <a class="text-white font-first-font font-extrabold" href="./inscription.php">
-              <div class="btn btn-left">
+              <div class=" max-sm:text-sm max-sm:w-0 max-sm:min-w-[100px] max-sm:border-[0.3rem] btn btn-left">
                 Inscription
               </div>
             </a>
@@ -56,11 +56,11 @@ $isUserConnected = isset($_SESSION["user"]) ? true : false;
         </div>
 
         <!-- Logo au centre -->
-        <div class="logo group">
+        <div class="logo ">
           <a href="./index.php">
-            <h2 class="text-8xl font-extrabold font-first-font logotext group-hover:logoAnim">
+            <h2 class=" text-xl sm:text-4xl xl:text-8xl font-extrabold font-first-font logotext lg:text-6xl">
               <span><</span>
-              <span class=>Quiz</span>
+              <span class=>Quizz</span>
               <span class="text-[#8344bc]">405</span>
               <span>/></span>
             </h2>
@@ -71,7 +71,7 @@ $isUserConnected = isset($_SESSION["user"]) ? true : false;
         <div class="right">
           <?php if (!$isUserConnected): ?>
             <a class="text-white font-first-font font-extrabold" href="./connexion.php">
-              <div class="btn btn-right">
+              <div class="max-sm:text-sm max-sm:w-0 max-sm:min-w-[100px] max-sm:border-[0.3rem] btn btn-right">
                 Connexion
               </div>
               
