@@ -43,25 +43,26 @@ class QcmManager
 
         ob_start();
     ?>
-        <div class="pt-[70px] container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg overflow-y-scroll scroll-0 text-center max-h-[800px]">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Quizz<br><?= htmlspecialchars($qcm->getNom()) ?></h2>
+        <div class="pt-[70px] container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg text-center overflow-auto max-h-screen">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6"><?php echo htmlspecialchars($qcm->getNom()); ?></h2>
+            <p id="demo"></p>
 
             <div id="question-container">
                 <!-- Question -->
                 <?php foreach ($qcm->getQuestion() as $index => $question): ?>
                     <div class="question-card bg-white p-6 mb-6 rounded-lg shadow-sm" data-question-index="<?= $index ?>" style="display: <?= $index === 0 ? 'block' : 'none' ?>;">
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">Question : <span><?= $index+1 ?></span> / <span><?= $numberOfQuestions ?></span> <br>  <?= htmlspecialchars($question->getIntitule()) ?></h3>
-                    <?= $question->getImgUrl() ? '<img class="max-w-[300px] m-auto my-[10px]" src="' . htmlspecialchars($question->getImgUrl()) . '" alt="Image du quizz">' : '' ?>
-                    <ul class="flex flex-wrap justify-center gap-4">
-                        <!-- Réponses -->
-                        <?php foreach ($question->getAnswers() as $answer): ?>
-                        <li class="answer-item  text-gray-600 text-xl bg-gray-200 text-center px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer max-w-full basis-full lg:basis-[45%] transition-all transform hover:scale-110" data-is-right="<?= $answer->getisRightAnswer() ? 'true' : 'false' ?>" data-answer="<?= htmlspecialchars($answer->getIntitule()) ?>">
-                            <?= htmlspecialchars($answer->getIntitule()) ?>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
-                    <p class="correct-answer text-lg text-gray-600 mt-4 hidden">La bonne réponse est : <span class="correct-answer-text"></span></p>
-                    <p class="explanation text-lg text-gray-600 mt-4 hidden"><?= htmlspecialchars($question->getExplanation()) ?></p>
+                        
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-4"><?= htmlspecialchars($question->getIntitule()) ?></h3>
+                        <?= $question->getImgUrl() ? '<img class="max-w-[300px] m-auto my-[10px]" src="' . htmlspecialchars($question->getImgUrl()) . '" alt="Image du quizz">' : '' ?>
+                        <ul class="flex flex-wrap justify-center gap-4">
+                            <?php foreach ($question->getAnswers() as $answer): ?>
+                                <li class="answer-item text-lg text-gray-600 p-2 border border-gray-300 rounded-lg cursor-pointer" data-is-right="<?= $answer->getisRightAnswer() ? 'true' : 'false' ?>" data-answer="<?= htmlspecialchars($answer->getIntitule()) ?>">
+                                    <?= htmlspecialchars($answer->getIntitule()) ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <p class="correct-answer text-lg text-gray-600 mt-4 hidden">La bonne réponse est : <span class="correct-answer-text"></span></p>
+                        <p class="explanation text-lg text-gray-600 mt-4 hidden"><?= htmlspecialchars($question->getExplanation()) ?></p>
                     </div>
                 <?php endforeach; ?>
 
