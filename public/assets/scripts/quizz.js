@@ -121,7 +121,7 @@ function startTimer() {
         clearInterval(timerInterval);
     }
 
-    timerInterval = setInterval(myTimer, 1000);
+    timerInterval = setInterval(myTimer, 100);
 }
 
 // Fonction du minuteur pour mettre à jour le minuteur chaque seconde
@@ -141,7 +141,7 @@ function myTimer() {
 
     } else {
         document.getElementById("demo").innerHTML = timeRemaining + "s"; 
-        timeRemaining--; 
+        timeRemaining = parseFloat((timeRemaining - 0.1).toPrecision(2)); 
     }
 }
 
