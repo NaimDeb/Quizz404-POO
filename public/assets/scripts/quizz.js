@@ -20,6 +20,10 @@ let isTimerStopped = false;
 $totalScore = 0;
 
 
+//Appelle startTimer pour la première question
+
+startTimer();
+
 // Ajouter un écouteur d'événement de clic à chaque élément de réponse
 answers.forEach(answer => {
     answer.addEventListener("click", handleClickAnswer)
@@ -53,6 +57,9 @@ function handleClickAnswer(event) {
         this.classList.add("text-red-500", "font-bold", "border-red-500");
     }
 
+    // On stoppe le timer
+    isTimerStopped = true;
+
     // Afficher la réponse correcte et l'explication
     correctAnswerText.textContent = correctAnswer.getAttribute("data-answer");
     explanation.classList.remove("hidden");
@@ -61,6 +68,11 @@ function handleClickAnswer(event) {
     // Afficher le bouton suivant
     nextButton.classList.remove("hidden");
 }
+
+
+// Ajouter un écouteur d'événement de clic au bouton suivant
+nextButton.addEventListener("click", handleClickNext);
+
 
 // Fonction pour gérer le clic sur le bouton suivant
 function handleClickNext() {
@@ -96,8 +108,8 @@ function handleClickNext() {
     startTimer();
 }
 
-// Ajouter un écouteur d'événement de clic au bouton suivant
-nextButton.addEventListener("click", handleClickNext);
+
+// ------ MINUTEUR ------
 
 // Fonction pour démarrer le minuteur
 function startTimer() {
@@ -135,7 +147,6 @@ function myTimer() {
 
 
 function calculateScore() {
-     
-    $totalScore += ((timeRemaining / maxTimeRemaining) * 100) + 100
-    
+    const numberOfQuestions = questionContainer.children.length;
+    $totalScore += ((((timeRemaining / maxTimeRemaining) * 1000) + 1000) / (numberOfQuestions * 2));
 }
