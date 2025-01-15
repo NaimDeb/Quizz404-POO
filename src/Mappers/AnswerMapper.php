@@ -1,6 +1,6 @@
 <?php
 
-class AnswerMapper {
+class AnswerMapper implements MapperContract {
 
     public static function mapToObject(array $data): Answer {
 

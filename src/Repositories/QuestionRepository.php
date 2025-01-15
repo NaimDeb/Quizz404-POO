@@ -5,16 +5,14 @@
 class QuestionRepository {
 
     private PDO $db;
-    private QuestionMapper $mapper;
 
     public function __construct(){
         $this->db = Database::getInstance();
-        $this->mapper = new QuestionMapper();
     }
 
 
     /**
-     * Récupère toutes les questions ayant le même quiz_id et retourne un array
+     * Récupère toutes les questions ayant le même quiz_id et retourne un array d'instances
      */
     public function findAllByQuizzId(int $idQuizz): array {
 
@@ -33,9 +31,7 @@ class QuestionRepository {
 
         foreach ($data as $question) {
 
-            $objectQuestion = $this->mapper->mapToObject($question);
-
-            $arrayQuestions[] = $objectQuestion;
+            $arrayQuestions[] = QuestionMapper::mapToObject($question);
             
         }
 

@@ -2,7 +2,7 @@
 
 class QcmMapper {
 
-    public function mapToObject(array $data): QCM {
+    public static function mapToObject(array $data): QCM {
 
         $id = $data["id"];
         $titre = $data["titre"];

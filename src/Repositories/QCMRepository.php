@@ -4,14 +4,15 @@
 class QCMRepository {
 
     private PDO $db;
-    private QCMMapper $mapper;
 
     public function __construct(){
         $this->db = Database::getInstance();
-        $this->mapper = new QCMMapper();
     }
 
 
+    /**
+     * Cherche dans la base de donnée le Quizz qui a l'id donné, appelle QCMMapper et retourne un objet | null.
+     */
     public function findById(int $id): ?QCM {
 
         $stmt = $this->db->prepare("SELECT * FROM quiz WHERE id = :id LIMIT 1");
@@ -25,13 +26,15 @@ class QCMRepository {
             return null;
         }
 
-
-        return $this->mapper->mapToObject($data);
+        return QcmMapper::mapToObject($data);;
 
     }
 
 
-    public function getAllQuizz() {
+    /**
+     * Récupère tous les quizz de la base de donnée, appelle QCMMapper et retourne une liste d'instances
+     */
+    public function getAllQuizz(): array {
         $stmt = $this->db->prepare("SELECT * FROM quiz");
         $stmt->execute();
 
@@ -40,7 +43,7 @@ class QCMRepository {
         $arrayData = [];
 
         foreach ($data as $quizz) {
-            $arrayData[] = $this->mapper->mapToObject($quizz);
+            $arrayData[] = QcmMapper::mapToObject($quizz);
         }
 
         return $arrayData;
