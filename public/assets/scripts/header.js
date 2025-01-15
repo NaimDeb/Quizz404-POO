@@ -21,18 +21,47 @@ document.querySelectorAll("btn").forEach($btn => {
 
 
 
-  let timeRemaining = 10; 
+  
+let timeRemaining = 0;
+let timerInterval;
+let stopTimer = false;
 
-    function myTimer() {
-        if (timeRemaining <= 0) {
-            clearInterval(timerInterval); 
-            document.getElementById("demo").innerHTML = "Temps écoulé!";
-        } else {
-            document.getElementById("demo").innerHTML = timeRemaining + "s"; 
-            timeRemaining--; 
-        }
+
+
+// Démarrer le timer
+function startTimer() {
+   
+    timeRemaining = 10;
+    stopTimer = false
+    document.getElementById("demo").innerHTML = timeRemaining + "s"; 
+
+    
+    if (timerInterval) {
+        clearInterval(timerInterval);
     }
 
-    let timerInterval = setInterval(myTimer, 1000); 
+    
+    timerInterval = setInterval(myTimer, 1000);
+}
 
-    myTimer(); 
+
+function myTimer() {
+    if (timeRemaining <= 0 || stopTimer == true) {
+        clearInterval(timerInterval); 
+
+        if (timeRemaining <= 0) {
+            document.getElementById("demo").innerHTML = "Temps écoulé!";
+        }
+
+        answers.forEach(a => {
+            a.removeEventListener("click", handleClickAnswer);  
+        });
+
+        nextButton.classList.remove("hidden");
+
+    } else {
+        document.getElementById("demo").innerHTML = timeRemaining + "s"; 
+        timeRemaining--; 
+    }
+}
+
