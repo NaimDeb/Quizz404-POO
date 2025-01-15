@@ -6,6 +6,7 @@ echo QcmManager::generateDisplayIndividualQuizz($_GET["id"]);
 
 ?>
 
+
 <?php
 include_once "./assets/components/htmlend.php"
 ?>
