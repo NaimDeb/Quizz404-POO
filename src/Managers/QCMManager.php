@@ -45,7 +45,7 @@ class QcmManager
     ?>
         <div class="pt-[70px] container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg overflow-y-scroll scroll-0 text-center max-h-[800px]">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Quizz<br><?= htmlspecialchars($qcm->getNom()) ?></h2>
-            <p id="demo" class="text-4xl font-bold text-center text-blue-500 bg-blue-500 rounded-full mb-4 shadow-lg inline-block"></p>
+            <p id="demo" class="text-3xl font-extrabold text-center text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 mb-4 py-3 px-6 rounded-full shadow-2xl inline-block transform transition-all duration-300 hover:scale-110"></p>
 
 
             <div id="question-container">
