@@ -124,6 +124,12 @@
   }
 
 
+  .btn-lite {
+    position: relative;
+    background-color: rgb(50 50 50);
+    border: 0.2rem solid rgb(30 30 30);
+    overflow: hidden;
+  }
 
   .btn {
     display: flex;
