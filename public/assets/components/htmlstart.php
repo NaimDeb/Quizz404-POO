@@ -16,6 +16,7 @@ $isUserConnected = isset($_SESSION["user"]) ? true : false;
   <title>Quizz404</title>
   <link rel="icon" href="./image/_.ico">
   <link rel="stylesheet" href="./assets/css/output.css">
+  <script src="./assets/scripts/header.js"></script>
   <style>
     header {
       display: flex;
