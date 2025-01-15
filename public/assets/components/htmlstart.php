@@ -3,6 +3,12 @@
 require_once "../utils/autoloader.php";
 session_start();
 
+if (isset($_SESSION["user"])){
+  $user = $_SESSION["user"];
+}else{
+  header("Location: ../index.php ");
+}
+
 ?>
 
 <!DOCTYPE html>

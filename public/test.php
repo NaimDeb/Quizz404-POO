@@ -3,7 +3,10 @@ include_once "../utils/autoloader.php";
 $qcmRepo = new QCMRepository();
 $questionRepo = new QuestionRepository();
 $reponseRepo = new AnswerRepository();
+$userRepo = new UserRepository();
 
+
+$user = $userRepo->findAllUser(2);
 // On crée l'objet QCM 
 $qcm1 = $qcmRepo->findById(1);
  
@@ -29,8 +32,9 @@ $qcm1->setQuestion($questions);
 include_once "./assets/components/htmlstart.php"
 ?>
 <?php
-echo QcmManager::generateDisplayIndividualQuizz(1,$pdo);
+echo QcmManager::generateDisplayIndividualQuizz(1);
 
+var_dump($user);
 ?>
 
 <?php
