@@ -1,12 +1,17 @@
 <?php
-include_once "./assets/components/htmlstart.php"
+include_once "./assets/components/htmlstart.php";
+
+if (isset($_SESSION["user"])) {
+  header("Location: ./choixTheme.php");
+  exit;
+}
 ?>
 
 <div class="w-full pt-[250px]">
 
 
 
-<div class="flex flex-col"> <!-- Card Formulaire -->
+<div class="flex flex-col"> 
 
 
 
@@ -15,7 +20,7 @@ include_once "./assets/components/htmlstart.php"
   <h2 class="text-4xl font-bold text-center text-gray-800 mb-4">Inscription</h2>
   <?php
 if (isset($_GET["error"])) {    
-    echo "<p class='text-xl text-center text-red-500'>Le pseudo {$_SESSION["erreur"]} est déjà pris.</p>";
+    echo "<p class='text-xl text-center text-red-500'>Le pseudo est déjà pris.</p>";
     
     }
 if (isset($_GET["success"])) {

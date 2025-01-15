@@ -12,6 +12,7 @@ class QcmManager
         $allQCM = $qcmRepo->getAllQuizz();
 
         ob_start(); ?>
+        
 
         <h1 class="text-5xl font-first-font text-center">CHOISI TON THÈME !</h1>
 

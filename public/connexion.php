@@ -1,6 +1,11 @@
 <?php
-include_once "./assets/components/htmlstart.php"
-?>
+include_once "./assets/components/htmlstart.php";
+
+if (isset($_SESSION["user"])) {
+  header("Location: ./choixTheme.php");
+  exit;
+}
+  ?>
 
 <div class="w-full pt-[250px]">
 
