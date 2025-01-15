@@ -10,6 +10,7 @@ class QcmManager
     {
         $qcmRepo = new QCMRepository();
         $allQCM = $qcmRepo->getAllQuizz();
+        
 
         ob_start(); ?>
         
@@ -71,6 +72,7 @@ class QcmManager
             const nextButton = document.getElementById("next-button");
             const questionContainer = document.getElementById("question-container");
             let currentQuestionIndex = 0;
+            let score = 0; // Initialisation du score
 
             answers.forEach(answer => {
                 answer.addEventListener("click", handleClickAnswer)
@@ -89,6 +91,7 @@ class QcmManager
                 this.classList.remove("text-gray-600");
                 if (isRight) {
                     this.classList.add("text-green-500", "font-bold", "border-green-500");
+                    score++;
                 } else {
                     this.classList.add("text-red-500", "font-bold", "border-red-500");
                 }
@@ -112,7 +115,10 @@ class QcmManager
                     nextQuestion.style.display = 'block';
                     nextButton.classList.add("hidden");
                 } else {
-                    questionContainer.innerHTML = '<h3 class="text-2xl font-semibold text-gray-700 mb-4">Quiz Completed!</h3>';
+                    questionContainer.innerHTML = `
+                <h3 class="text-2xl font-semibold text-gray-700 mb-4">Quiz Completed!</h3>
+                <p class="text-lg text-gray-600 mt-4">Votre score final : <span class="font-bold">${score} / ${questionContainer.children.length}</span></p>
+            `;
                     nextButton.style.display = 'none';
                 }
 
