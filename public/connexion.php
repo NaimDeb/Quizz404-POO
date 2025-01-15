@@ -5,14 +5,20 @@ if (isset($_SESSION["user"])) {
   header("Location: ./choixTheme.php");
   exit;
 }
-  ?>
+
+if (isset($_POST["pseudo"])) {
+  UserManager::connectUser($_POST["pseudo"]);
+}
+
+
+?>
 
 <div class="w-full pt-[250px]">
 
 
 
 <div class="flex flex-col"> <!-- Card Formulaire -->
-<form action="./process/process_connect_user.php" method="post" class="flex flex-col items-center gap-4">
+<form action="./connexion.php" method="post" class="flex flex-col items-center gap-4">
   <h2 class="text-4xl font-bold text-center text-gray-800 mb-6">Connexion</h2>
 
   <label for="pseudo" class="text-xl">Entrez votre pseudo :</label>
@@ -27,16 +33,17 @@ if (isset($_SESSION["user"])) {
 </div>
 
 <?php
-if (isset($_SESSION["erreur"])) {
+if (isset($_GET["error"])) {
     
-  echo "<p class='text-xl text-center text-red-500'>Le compte {$_SESSION["erreur"]} n'existe pas.</p>";
+  echo "<p class='text-xl text-center text-red-500'>Le compte n'existe pas.</p>";
     
-    
-    unset($_SESSION["message"]);
+  
 }
 ?>
 
 </div>
+
+
 <?php
 include_once "./assets/components/htmlend.php"
 ?>
