@@ -55,9 +55,9 @@ $isUserConnected = isset($_SESSION["user"]) ? true : false;
         </div>
 
         <!-- Logo au centre -->
-        <div class="logo">
+        <div class="logo group">
           <a href="./index.php">
-            <h2 class="text-8xl font-extrabold font-first-font logotext">
+            <h2 class="text-8xl font-extrabold font-first-font logotext group-hover:logoAnim">
               <span><</span>
               <span class=>Quiz</span>
               <span class="text-[#8344bc]">405</span>
