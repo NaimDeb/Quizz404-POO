@@ -9,11 +9,16 @@ let currentQuestionIndex = 0;
 // Initialiser le score
 let score = 0; 
 // Initialiser le temps restant pour chaque question
-let timeRemaining = 10;
+const maxTimeRemaining = 10;
+let timeRemaining = maxTimeRemaining;
 // Initialiser l'intervalle du minuteur
 let timerInterval;
 // Drapeau pour vérifier si le minuteur est arrêté
 let isTimerStopped = false;
+
+// Score de l'user
+$totalScore = 0;
+
 
 // Ajouter un écouteur d'événement de clic à chaque élément de réponse
 answers.forEach(answer => {
@@ -41,6 +46,9 @@ function handleClickAnswer(event) {
     if (isRight) {
         this.classList.add("text-green-500", "font-bold", "border-green-500");
         score++;
+
+        calculateScore();
+
     } else {
         this.classList.add("text-red-500", "font-bold", "border-red-500");
     }
@@ -67,12 +75,14 @@ function handleClickNext() {
         const nextQuestion = document.querySelector(`.question-card[data-question-index="${currentQuestionIndex}"]`);
         nextQuestion.style.display = 'block'; 
         nextButton.classList.add("hidden"); 
+
     } else {
         // Afficher le score final
         document.getElementById("demo").style.display = 'none';
         questionContainer.innerHTML = `
             <h3 class="text-2xl font-semibold text-gray-700 mb-4">Quiz Fini !</h3>
-            <p class="text-lg text-gray-600 mt-4">Votre score final : <span class="font-bold">${score} / ${questionContainer.children.length}</span></p>
+            <p class="text-lg text-gray-600 mt-4">Votre score final : <span class="font-bold"> ${$totalScore}</span> </p>
+            <p class="text-lg text-gray-600 mt-4"> <span class="font-bold"> ${score} </span> / ${questionContainer.children.length} bonnes réponses</p>
         `;
         nextButton.style.display = 'none';
     }
@@ -91,7 +101,7 @@ nextButton.addEventListener("click", handleClickNext);
 
 // Fonction pour démarrer le minuteur
 function startTimer() {
-    timeRemaining = timeRemaining;
+    timeRemaining = maxTimeRemaining;
     isTimerStopped = false;
     document.getElementById("demo").innerHTML = timeRemaining + "s"; 
 
@@ -121,4 +131,11 @@ function myTimer() {
         document.getElementById("demo").innerHTML = timeRemaining + "s"; 
         timeRemaining--; 
     }
+}
+
+
+function calculateScore() {
+     
+    $totalScore += ((timeRemaining / maxTimeRemaining) * 100) + 100
+    
 }
