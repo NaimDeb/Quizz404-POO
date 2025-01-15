@@ -1,5 +1,10 @@
 <?php
-include_once "./assets/components/htmlstart.php"
+include_once "./assets/components/htmlstart.php";
+
+if(isset($_SESSION["user"])){
+  header("location: ./choixTheme.php");
+}
+
 ?>
 
 

@@ -5,8 +5,7 @@
 class AnswerRepository {
 
     private PDO $db;
-    private AnswerMapper $mapper;
-
+    
     public function __construct(){
         $this->db = Database::getInstance();
     }

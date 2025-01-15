@@ -20,54 +20,81 @@ if (isset($_SESSION["user"])){
   <title>Quizz404</title>
   <link rel="icon" href="./image/_.ico">
   <link rel="stylesheet" href="./assets/css/output.css">
+  <style>
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+    }
+    .logo {
+      flex-grow: 1;
+      text-align: center;
+    }
+    .btn {
+      width: 120px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
     <div id="star-container">
 
-      <header class="flex w-100 justify-around pt-5 items-center opacity-[1] z-2">
+      <header class="opacity-[1] z-2 px-8 lg:px-16">
+        <!-- Bouton Inscription-->
+        <div class="left">
+          <?php if (!$isUserConnected): ?>
+            <a class="text-white font-first-font font-extrabold" href="./inscription.php">
+              <div class="btn btn-left">
+                Inscription
+              </div>
+            </a>
+          <?php endif; ?>
+        </div>
 
-
-        <a class="text-white font-first-font font-extrabold" href="./inscription.php">
-          <div class="w-[9%] h-[70px] items-center flex justify-center btn">
-            Inscription
-          </div>
-        </a>
-
-        <div class="w-[50%] p-5 items-center text-center ">
+        <!-- Logo au centre -->
+        <div class="logo group">
           <a href="./index.php">
-          <h2 class="text-8xl font-extrabold font-first-font">
-            <span>
-              <
-                </span>
-                <span>Quiz</span>
-                <span class="text-[#8344bc]">405</span>
-                <span>/></span>
-          </h2>
+            <h2 class="text-8xl font-extrabold font-first-font logotext group-hover:logoAnim">
+              <span><</span>
+              <span class=>Quiz</span>
+              <span class="text-[#8344bc]">405</span>
+              <span>/></span>
+            </h2>
           </a>
         </div>
 
-
-        <a class="text-white font-first-font font-extrabold" href="./connexion.php">
-          <div class="w-[9%] h-[70px] items-center flex justify-center btn">
-            Connexion
-          </div>
-        </a>
+        <!-- Bouton Connexion ou Déconnexion -->
+        <div class="right">
+          <?php if (!$isUserConnected): ?>
+            <a class="text-white font-first-font font-extrabold" href="./connexion.php">
+              <div class="btn btn-right">
+                Connexion
+              </div>
+            </a>
+          <?php else: ?>
+            <a class="text-white font-first-font font-extrabold" href="./deconnexion.php">
+              <div class="btn btn-right">
+                Déconnexion
+              </div>
+            </a>
+          <?php endif; ?>
+        </div>
       </header>
 
       <main>
-
         <div id="star-pattern"></div>
-        <div id="star-gradient-overlay">
+        <div id="star-gradient-overlay"></div>
+      </main>
 
-        </div>
-    </div>
-    <div id="stripe-container">
-      <div id="stripe-pattern">
-        <div class="h-screen m-auto max-w-[100vw]">
-        <!-- METTEZ VOTRE HTML ICI -->
-
-        
-
+      <div id="stripe-container">
+        <div id="stripe-pattern">
+          <div class="h-screen m-auto max-w-[100vw]">
+          <!-- METTEZ VOTRE HTML ICI -->
 

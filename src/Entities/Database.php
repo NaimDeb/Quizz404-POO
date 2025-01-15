@@ -1,6 +1,6 @@
 <?php
 
-
+// Singleton
 class Database {
     private static ?PDO $instance = null;
 

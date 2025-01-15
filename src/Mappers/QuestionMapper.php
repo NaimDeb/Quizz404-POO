@@ -2,7 +2,7 @@
 
 class QuestionMapper {
 
-    public function mapToObject(array $data): Question {
+    public static function mapToObject(array $data): Question {
 
         // todo : Regarder si on utilise bien tout ça
         $id = $data["id"];
