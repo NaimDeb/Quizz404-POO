@@ -9,8 +9,9 @@ class QuestionMapper {
         // $id_quizz = $data["id_quiz"];
         $intitule = $data["question"];
         $imgUrl = $data["img"];
+        $explication = $data["explication"] ? $data["explication"] : "Pas d'explications";
 
-        return new Question($id, $intitule, $imgUrl, "Pas d'explications");
+        return new Question($id, $intitule, $imgUrl, $explication);
     }
     
 }
