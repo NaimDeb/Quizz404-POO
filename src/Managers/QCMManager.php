@@ -41,6 +41,8 @@ class QcmManager
         // On remplit le QCM de ses questions et réponses
         $qcm = $qcm->remplirQcm();
 
+        $numberOfQuestions = count($qcm->getQuestion());
+
         ob_start();
     ?>
         <div class="pt-[70px] container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg text-center overflow-auto max-h-screen">
@@ -48,6 +50,7 @@ class QcmManager
             <p id="demo"></p>
 
             <div id="question-container">
+                <!-- Question -->
                 <?php foreach ($qcm->getQuestion() as $index => $question): ?>
                     <div class="question-card bg-white p-6 mb-6 rounded-lg shadow-sm" data-question-index="<?= $index ?>" style="display: <?= $index === 0 ? 'block' : 'none' ?>;">
                         
@@ -64,9 +67,9 @@ class QcmManager
                         <p class="explanation text-lg text-gray-600 mt-4 hidden"><?= htmlspecialchars($question->getExplanation()) ?></p>
                     </div>
                 <?php endforeach; ?>
-            </div>
 
-            <button id="next-button" class="hidden mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">Next</button>
+            </div>
+            <button id="next-button" class="hidden btn-lite hover:scale-110  my-4 px-4 py-2 bg-gray-500 text-white rounded-lg transition-all hover:bg-gray-700  max-sm:w-full md:w-auto">Question suivante</button>
         </div>
 
         <script>
@@ -118,7 +121,7 @@ class QcmManager
                     nextButton.classList.add("hidden");
                 } else {
                     questionContainer.innerHTML = `
-                <h3 class="text-2xl font-semibold text-gray-700 mb-4">Quiz Completed!</h3>
+                <h3 class="text-2xl font-semibold text-gray-700 mb-4">Quiz Fini !</h3>
                 <p class="text-lg text-gray-600 mt-4">Votre score final : <span class="font-bold">${score} / ${questionContainer.children.length}</span></p>
             `;
                     nextButton.style.display = 'none';
