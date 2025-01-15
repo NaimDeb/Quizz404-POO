@@ -49,13 +49,15 @@ class QcmManager
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Quizz<br><?= htmlspecialchars($qcm->getNom()) ?></h2>
 
             <div id="question-container">
+                <!-- Question -->
                 <?php foreach ($qcm->getQuestion() as $index => $question): ?>
                     <div class="question-card bg-white p-6 mb-6 rounded-lg shadow-sm" data-question-index="<?= $index ?>" style="display: <?= $index === 0 ? 'block' : 'none' ?>;">
                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Question : <span><?= $index+1 ?></span> / <span><?= $numberOfQuestions ?></span> <br>  <?= htmlspecialchars($question->getIntitule()) ?></h3>
                     <?= $question->getImgUrl() ? '<img class="max-w-[300px] m-auto my-[10px]" src="' . htmlspecialchars($question->getImgUrl()) . '" alt="Image du quizz">' : '' ?>
                     <ul class="flex flex-wrap justify-center gap-4">
+                        <!-- Réponses -->
                         <?php foreach ($question->getAnswers() as $answer): ?>
-                        <li class="answer-item text-lg text-gray-600 p-2 border border-gray-300 rounded-lg cursor-pointer sm:w-full md:w-1/2 lg:w-1/3 xl:w-1/4" data-is-right="<?= $answer->getisRightAnswer() ? 'true' : 'false' ?>" data-answer="<?= htmlspecialchars($answer->getIntitule()) ?>">
+                        <li class="answer-item  text-gray-600 text-xl bg-gray-200 text-center px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer max-w-full basis-full lg:basis-[45%] transition-all transform hover:scale-110" data-is-right="<?= $answer->getisRightAnswer() ? 'true' : 'false' ?>" data-answer="<?= htmlspecialchars($answer->getIntitule()) ?>">
                             <?= htmlspecialchars($answer->getIntitule()) ?>
                         </li>
                         <?php endforeach; ?>
