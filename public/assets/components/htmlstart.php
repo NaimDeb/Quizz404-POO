@@ -74,15 +74,17 @@ $isUserConnected = isset($_SESSION["user"]) ? true : false;
               <div class="max-sm:text-sm max-sm:w-0 max-sm:min-w-[100px] max-sm:border-[0.3rem] btn btn-right">
                 Connexion
               </div>
+              
             </a>
           <?php else: ?>
-            <a class="text-white font-first-font font-extrabold" href="./deconnexion.php">
-              <div class=" max-sm:text-sm max-sm:w-0 max-sm:min-w-[100px] max-sm:border-[0.3rem] btn btn-right">
+            <a class="text-white font-first-font font-extrabold" href="./process/process_deconnexion.php">
+              <div class="btn btn-right">
                 Déconnexion
               </div>
             </a>
           <?php endif; ?>
         </div>
+        
       </header>
 
       <main>
