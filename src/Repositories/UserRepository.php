@@ -8,13 +8,18 @@ class UserRepository {
         $this->db = Database::getInstance();
     }
 
-    public function findAllUser(int $idUser): array {
+    public function findByPseudo(string $pseudo): ?array {
 
-        $stmt = $this->db->prepare("SELECT * FROM user WHERE id = :idUser");
-        $stmt->bindParam(":idUser", $idUser, PDO::PARAM_INT);
+        $stmt = $this->db->prepare("SELECT * FROM user WHERE pseudo = :pseudo");
+        $stmt->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
         $stmt->execute();
 
-        $data = $stmt->fetchAll();
+        $data = $stmt->fetch();
+
+        if (!$data) {
+            return null;
+        }
+
         return $data;
     }
 }

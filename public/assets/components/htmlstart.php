@@ -3,11 +3,7 @@
 require_once "../utils/autoloader.php";
 session_start();
 
-if (isset($_SESSION["user"])){
-  $user = $_SESSION["user"];
-}else{
-  header("Location: ../index.php ");
-}
+$isUserConnected = isset($_SESSION["user"]) ? true : false;
 
 ?>
 
@@ -20,6 +16,7 @@ if (isset($_SESSION["user"])){
   <title>Quizz404</title>
   <link rel="icon" href="./image/_.ico">
   <link rel="stylesheet" href="./assets/css/output.css">
+  <script src="./assets/scripts/header.js"></script>
   <style>
     header {
       display: flex;
