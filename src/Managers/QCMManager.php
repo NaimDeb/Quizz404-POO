@@ -45,7 +45,8 @@ class QcmManager
     ?>
         <div class="pt-[70px] container mx-auto p-8 bg-gray-100 rounded-lg shadow-lg text-center overflow-auto max-h-screen">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6"><?php echo htmlspecialchars($qcm->getNom()); ?></h2>
-            <p id="demo"></p>
+            <p id="demo" class="text-4xl font-bold text-center text-blue-500 bg-blue-500 rounded-full mb-4 shadow-lg inline-block"></p>
+
 
             <div id="question-container">
                 <!-- Question -->
@@ -75,7 +76,7 @@ class QcmManager
             const nextButton = document.getElementById("next-button");
             const questionContainer = document.getElementById("question-container");
             let currentQuestionIndex = 0;
-            let score = 0; // Initialisation du score
+            let score = 0; 
 
             answers.forEach(answer => {
                 answer.addEventListener("click", handleClickAnswer)
@@ -106,29 +107,75 @@ class QcmManager
                 nextButton.classList.remove("hidden");
             }
 
-            nextButton.addEventListener("click", handleClickNext);
 
-            function handleClickNext(event) {
-                const currentQuestion = document.querySelector(`.question-card[data-question-index="${currentQuestionIndex}"]`);
-                currentQuestion.style.display = 'none';
-                currentQuestionIndex++;
+    
+    function handleClickNext() {
+        const currentQuestion = document.querySelector(`.question-card[data-question-index="${currentQuestionIndex}"]`);
+        currentQuestion.style.display = 'none'; 
+        currentQuestionIndex++; 
 
-                if (currentQuestionIndex < questionContainer.children.length) {
-                    const nextQuestion = document.querySelector(`.question-card[data-question-index="${currentQuestionIndex}"]`);
-                    nextQuestion.style.display = 'block';
-                    nextButton.classList.add("hidden");
-                } else {
-                    questionContainer.innerHTML = `
+        if (currentQuestionIndex < questionContainer.children.length) {
+            const nextQuestion = document.querySelector(`.question-card[data-question-index="${currentQuestionIndex}"]`);
+            nextQuestion.style.display = 'block'; 
+            nextButton.classList.add("hidden"); 
+        } else {
+           
+            document.getElementById("demo").style.display = 'none';
+            questionContainer.innerHTML = `
                 <h3 class="text-2xl font-semibold text-gray-700 mb-4">Quiz Fini !</h3>
                 <p class="text-lg text-gray-600 mt-4">Votre score final : <span class="font-bold">${score} / ${questionContainer.children.length}</span></p>
             `;
-                    nextButton.style.display = 'none';
-                }
+            nextButton.style.display = 'none';
+        }
 
-                answers.forEach(answer => {
-                    answer.addEventListener("click", handleClickAnswer)
-                });
-            }
+       
+        answers.forEach(answer => {
+            answer.addEventListener("click", handleClickAnswer);
+        });
+
+       
+        startTimer();
+    }
+
+    
+    nextButton.addEventListener("click", handleClickNext);
+
+    
+    function handleClickAnswer(event) {
+        stopTimer = true;
+        const isRight = this.getAttribute("data-is-right") === "true";
+        const correctAnswerText = this.closest('.question-card').querySelector('.correct-answer-text');
+        const explanation = this.closest('.question-card').querySelector('.explanation');
+        const correctAnswer = Array.from(this.closest('.question-card').querySelectorAll('.answer-item')).find(a => a.getAttribute("data-is-right") === "true");
+
+        
+        answers.forEach(a => {
+            a.removeEventListener("click", handleClickAnswer);  
+        });
+
+        this.classList.remove("text-gray-600");
+        if (isRight) {
+            this.classList.add("text-green-500", "font-bold", "border-green-500");
+            score++; 
+        } else {
+            this.classList.add("text-red-500", "font-bold", "border-red-500");
+        }
+
+        correctAnswerText.textContent = correctAnswer.getAttribute("data-answer");
+        explanation.classList.remove("hidden");
+        correctAnswerText.closest('.correct-answer').classList.remove("hidden");
+
+       
+        nextButton.classList.remove("hidden");
+    }
+
+    
+    startTimer();
+
+    
+    answers.forEach(answer => {
+        answer.addEventListener("click", handleClickAnswer);
+    });
         </script>
 
 <?php
