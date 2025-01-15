@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 13, 2025 at 03:11 PM
--- Server version: 8.3.0
--- PHP Version: 8.2.18
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mer. 15 jan. 2025 à 15:55
+-- Version du serveur : 8.3.0
+-- Version de PHP : 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `quizz404`
+-- Base de données : `quizz404`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `answer`
+-- Structure de la table `answer`
 --
 
 DROP TABLE IF EXISTS `answer`;
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `answer`
+-- Déchargement des données de la table `answer`
 --
 
 INSERT INTO `answer` (`id`, `intitule`, `id_question`, `is_correct`) VALUES
@@ -60,7 +60,7 @@ INSERT INTO `answer` (`id`, `intitule`, `id_question`, `is_correct`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `question`
+-- Structure de la table `question`
 --
 
 DROP TABLE IF EXISTS `question`;
@@ -69,25 +69,25 @@ CREATE TABLE IF NOT EXISTS `question` (
   `id_quiz` int NOT NULL,
   `question` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
+  `explication` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `question`
+-- Déchargement des données de la table `question`
 --
 
-INSERT INTO `question` (`id`, `id_quiz`, `question`, `img`) VALUES
-(1, 1, 'Naim et karl sont-il entrain de galèrer ?', ''),
-(2, 1, 'Est ce que php terrifie Naim et Karl ?', ''),
-(3, 1, 'A ton fais le meilleure projet ?', ''),
-(4, 2, 'Dans spiderman 1 Oncle Ben dis a Peter ?', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQCfz7FAATV64YPTNYN0SNyK6E-xOf5fDwGg&s'),
-(5, 2, 'Dans harry potter comment appelle t-on \r\nles humains sans magie', 'https://media-mcetv.ouest-france.fr/wp-content/uploads/2021/11/harry-potter-top-10-des-moldus-les-plus-courageux-dans-la-saga.jpg'),
-(6, 1, 'Cette photo est elle un photo montage ?', 'https://i.ibb.co/gjBMWcQ/Nouveau-projet-2.png');
+INSERT INTO `question` (`id`, `id_quiz`, `question`, `img`, `explication`) VALUES
+(1, 1, 'Naim et karl sont-il entrain de galèrer ?', '', 'ils m\'ont meme pas rajouté a la question '),
+(2, 1, 'Est ce que php terrifie Naim et Karl ?', '', NULL),
+(3, 1, 'A ton fais le meilleure projet ?', '', NULL),
+(4, 2, 'Dans spiderman 1 Oncle Ben dis a Peter ?', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQCfz7FAATV64YPTNYN0SNyK6E-xOf5fDwGg&s', NULL),
+(5, 2, 'Dans harry potter comment appelle t-on \r\nles humains sans magie', 'https://media-mcetv.ouest-france.fr/wp-content/uploads/2021/11/harry-potter-top-10-des-moldus-les-plus-courageux-dans-la-saga.jpg', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz`
+-- Structure de la table `quiz`
 --
 
 DROP TABLE IF EXISTS `quiz`;
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `quiz` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `quiz`
+-- Déchargement des données de la table `quiz`
 --
 
 INSERT INTO `quiz` (`id`, `titre`, `img`) VALUES
@@ -109,7 +109,7 @@ INSERT INTO `quiz` (`id`, `titre`, `img`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `score`
+-- Structure de la table `score`
 --
 
 DROP TABLE IF EXISTS `score`;
@@ -119,12 +119,20 @@ CREATE TABLE IF NOT EXISTS `score` (
   `id_user` int NOT NULL,
   `id_quiz` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `score`
+--
+
+INSERT INTO `score` (`id`, `score`, `id_user`, `id_quiz`) VALUES
+(1, 492, 13, 2),
+(2, 980, 13, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -132,10 +140,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `pseudo`) VALUES
@@ -149,7 +157,11 @@ INSERT INTO `user` (`id`, `pseudo`) VALUES
 (8, 'Alibaba'),
 (9, 'JEBALTROU'),
 (10, 'SimonGaming404'),
-(11, 'Karltest');
+(11, 'Karltest'),
+(12, 'a'),
+(13, 'l'),
+(14, 'ZEZADSQD'),
+(15, 'ss');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
