@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 15 jan. 2025 à 15:55
+-- Généré le : lun. 17 fév. 2025 à 11:30
 -- Version du serveur : 8.3.0
 -- Version de PHP : 8.2.18
 
@@ -34,28 +34,37 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `id_question` int NOT NULL,
   `is_correct` tinyint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `answer`
 --
 
 INSERT INTO `answer` (`id`, `intitule`, `id_question`, `is_correct`) VALUES
-(1, 'Vrai', 1, 1),
-(2, 'Faux', 1, 0),
-(3, 'Vrai', 2, 1),
-(4, 'Faux', 2, 0),
-(5, 'Oui', 3, 1),
-(6, 'Oui', 3, 1),
-(7, 'Peter fait attention a toi ', 4, 0),
-(8, 'Peter a tu preparé mon donuts ?', 4, 0),
-(9, 'Un grand pouvoir implique de grande responsabilité ', 4, 1),
-(10, 'Peter un grand pouvoir 1plike140', 4, 0),
-(11, 'Les golmons ', 5, 0),
-(12, 'Oh les baltrou', 5, 0),
-(13, 'Les moldu', 5, 1),
-(14, 'OUI', 6, 0),
-(15, 'NON', 6, 1);
+(1, '200', 1, 0),
+(2, '403', 1, 0),
+(3, '404', 1, 1),
+(4, '500', 1, 0),
+(5, 'Hyper Transfer Text Protocol', 2, 0),
+(6, 'HyperText Transfer Protocol', 2, 1),
+(7, 'High Technical Text Protocol', 2, 0),
+(8, 'Hyperlink Transport Protocol', 2, 0),
+(9, 'Chris Evans', 3, 0),
+(10, 'Robert Downey Jr.', 3, 1),
+(11, 'Chris Hemsworth', 3, 0),
+(12, 'Mark Ruffalo', 3, 0),
+(13, 'Better Call Saul', 4, 0),
+(14, 'Breaking Bad', 4, 1),
+(15, 'Sons of Anarchy', 4, 0),
+(16, 'Dexter', 4, 0),
+(17, 'Personal Hypertext Processor', 5, 0),
+(18, 'PHP: Hypertext Preprocessor', 5, 1),
+(19, 'Programming HTML Processor', 5, 0),
+(20, 'Predefined Hypertext Processor', 5, 0),
+(21, '&', 6, 0),
+(22, '$', 6, 1),
+(23, '#', 6, 0),
+(24, '%', 6, 0);
 
 -- --------------------------------------------------------
 
@@ -78,11 +87,12 @@ CREATE TABLE IF NOT EXISTS `question` (
 --
 
 INSERT INTO `question` (`id`, `id_quiz`, `question`, `img`, `explication`) VALUES
-(1, 1, 'Naim et karl sont-il entrain de galèrer ?', '', 'ils m\'ont meme pas rajouté a la question '),
-(2, 1, 'Est ce que php terrifie Naim et Karl ?', '', NULL),
-(3, 1, 'A ton fais le meilleure projet ?', '', NULL),
-(4, 2, 'Dans spiderman 1 Oncle Ben dis a Peter ?', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQCfz7FAATV64YPTNYN0SNyK6E-xOf5fDwGg&s', NULL),
-(5, 2, 'Dans harry potter comment appelle t-on \r\nles humains sans magie', 'https://media-mcetv.ouest-france.fr/wp-content/uploads/2021/11/harry-potter-top-10-des-moldus-les-plus-courageux-dans-la-saga.jpg', NULL);
+(1, 1, 'Quel est le code HTTP pour une page non trouvée ?', '', 'Le code 404 est utilisé pour indiquer qu\'une ressource demandée n\'existe pas sur le serveur.'),
+(2, 1, 'Que signifie HTTP ?', '', 'HTTP signifie HyperText Transfer Protocol, utilisé pour la communication sur le web.'),
+(3, 2, 'Quel acteur incarne Iron Man dans le MCU ?', '', 'Robert Downey Jr. joue le rôle d\'Iron Man depuis 2008 dans le Marvel Cinematic Universe.'),
+(4, 2, 'Dans quelle série trouve-t-on le personnage de Walter White ?', '', 'Walter White est le personnage principal de Breaking Bad.'),
+(5, 3, 'Que signifie PHP ?', '', 'PHP signifie à l\'origine Personal Home Page, mais aujourd\'hui, cela signifie PHP: Hypertext Preprocessor.'),
+(6, 3, 'Quel symbole est utilisé pour déclarer une variable en PHP ?', '', 'Le symbole \"$\" est utilisé pour déclarer une variable en PHP.');
 
 -- --------------------------------------------------------
 
@@ -96,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `titre` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `quiz`
@@ -104,7 +114,8 @@ CREATE TABLE IF NOT EXISTS `quiz` (
 
 INSERT INTO `quiz` (`id`, `titre`, `img`) VALUES
 (1, 'Pour le quizz404', 'https://i.ibb.co/1fZj8KZ/Th-me.png'),
-(2, 'Film et Serie', 'https://i.ibb.co/sPr3d0y/Nouveau-projet-1.png');
+(2, 'Film et Serie', 'https://i.ibb.co/sPr3d0y/Nouveau-projet-1.png'),
+(3, 'PHP', 'https://upload.wikimedia.org/wikipedia/commons/3/32/Codigo_php.jpg');
 
 -- --------------------------------------------------------
 
@@ -119,15 +130,16 @@ CREATE TABLE IF NOT EXISTS `score` (
   `id_user` int NOT NULL,
   `id_quiz` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `score`
 --
 
 INSERT INTO `score` (`id`, `score`, `id_user`, `id_quiz`) VALUES
-(1, 492, 13, 2),
-(2, 980, 13, 1);
+(3, 653, 16, 1),
+(4, 437, 16, 2),
+(5, 470, 16, 3);
 
 -- --------------------------------------------------------
 
@@ -140,28 +152,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `pseudo`) VALUES
-(1, 'qsdqdqd'),
-(2, 'Karl'),
-(3, 'NaimLeGameur'),
-(4, 'jesuisfou'),
-(5, 'Ali'),
-(6, 'ENfoirejsuistoujourspresent'),
-(7, '&lt;script&gt; console.log(&quot;baiser vous&quot;'),
-(8, 'Alibaba'),
-(9, 'JEBALTROU'),
-(10, 'SimonGaming404'),
-(11, 'Karltest'),
-(12, 'a'),
-(13, 'l'),
-(14, 'ZEZADSQD'),
-(15, 'ss');
+(16, 'naim');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
