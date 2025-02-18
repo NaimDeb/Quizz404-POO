@@ -26,7 +26,7 @@ class QCMRepository {
             return null;
         }
 
-        return QcmMapper::mapToObject($data);;
+        return QCMMapper::mapToObject($data);;
 
     }
 
@@ -43,7 +43,7 @@ class QCMRepository {
         $arrayData = [];
 
         foreach ($data as $quizz) {
-            $arrayData[] = QcmMapper::mapToObject($quizz);
+            $arrayData[] = QCMMapper::mapToObject($quizz);
         }
 
         return $arrayData;

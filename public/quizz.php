@@ -28,7 +28,7 @@ if (!isset($_SESSION["user"])){
 
 ?>
 <?php
-echo QcmManager::generateDisplayIndividualQuizz($_GET["id"]);
+echo QCMManager::generateDisplayIndividualQuizz($_GET["id"]);
 ?>
 
 

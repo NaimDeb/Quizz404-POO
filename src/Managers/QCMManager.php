@@ -1,6 +1,6 @@
 <?php
 
-class QcmManager
+class QCMManager
 {
 
 

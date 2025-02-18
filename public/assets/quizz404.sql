@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `id_question` int NOT NULL,
   `is_correct` tinyint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `answer`
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `img` varchar(255) NOT NULL,
   `explication` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `question`
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `titre` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `quiz`
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `score` (
   `id_user` int NOT NULL,
   `id_quiz` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `score`
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `user`

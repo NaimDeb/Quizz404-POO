@@ -1,6 +1,6 @@
 <?php
 
-class QcmMapper {
+class QCMMapper {
 
     public static function mapToObject(array $data): QCM {
 

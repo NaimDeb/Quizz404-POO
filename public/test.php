@@ -32,7 +32,7 @@ $qcm1->setQuestion($questions);
 include_once "./assets/components/htmlstart.php"
 ?>
 <?php
-echo QcmManager::generateDisplayIndividualQuizz(1);
+echo QCMManager::generateDisplayIndividualQuizz(1);
 
 var_dump($user);
 ?>

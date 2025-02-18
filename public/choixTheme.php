@@ -14,7 +14,7 @@ if (isset($_SESSION["titre"])) {
   }
 
 echo '<div class="pt-[150px]">';
-echo QcmManager::generateDisplayAllQuizzes();
+echo QCMManager::generateDisplayAllQuizzes();
 echo '</div>';
 include_once "./assets/components/htmlend.php"
 ?>
