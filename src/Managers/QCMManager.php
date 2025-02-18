@@ -19,7 +19,7 @@ class QCMManager
             <?php
             foreach ($allQCM as $QCM) {
             ?>
-                <a class="size-[300px] hover:scale-110 transition-all border-black border-[2px]" href="quizz?id=<?= htmlspecialchars($QCM->getId()) ?>"><img src="<?= htmlspecialchars($QCM->getImg()) ?>" alt=""></a>
+                <a class="size-[300px] hover:scale-110 transition-all border-black border-[2px]" href="quizz.php?id=<?= htmlspecialchars($QCM->getId()) ?>"><img src="<?= htmlspecialchars($QCM->getImg()) ?>" alt=""></a>
             <?php
             }
             ?>
