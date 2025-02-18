@@ -38,8 +38,8 @@ if (isset($_GET["success"])) {
     echo "<p class='text-green-500'> Le compte a bien été créé. </p>";
     }
 ?>
-  <label for="pseudo" class="text-xl">Entrez votre pseudo :</label>
-  <input type="text" name="pseudo" id="pseudo"  class="text-center rounded-xl w-[20%] border-2 border-black" placeholder="Votre pseudo">
+  <label for="pseudo" class="text-xl ">Entrez votre pseudo :</label>
+  <input type="text" name="pseudo" id="pseudo"  class="text-center rounded-xl w-[20%] max-sm:w-1/3 border-2 border-black" placeholder="Votre pseudo">
   
   <input type="submit" value="S'inscrire"  class="p-3 px-7 bg-orange-500 cursor-pointer shadow-xl rounded-lg hover:scale-110 transition-all">
   

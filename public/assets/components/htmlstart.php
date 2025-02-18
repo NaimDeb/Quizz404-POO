@@ -43,12 +43,12 @@ $isUserConnected = isset($_SESSION["user"]) ? true : false;
   <div id="app">
     <div id="star-container">
 
-      <header class="opacity-[1] z-2 px-8 lg:px-16">
+      <header class="opacity-[1] z-2 sm:px-8 lg:px-16">
         <!-- Bouton Inscription-->
         <div class="left">
           <?php if (!$isUserConnected): ?>
             <a class="text-white font-first-font font-extrabold" href="./inscription.php">
-              <div class=" max-sm:text-sm max-sm:w-0 max-sm:min-w-[100px] max-sm:border-[0.3rem] btn btn-left">
+              <div class=" text-sm max-sm:w-0 max-sm:min-w-[50px] max-sm:border-[0.3rem] btn btn-left">
                 Inscription
               </div>
             </a>
@@ -71,14 +71,14 @@ $isUserConnected = isset($_SESSION["user"]) ? true : false;
         <div class="right">
           <?php if (!$isUserConnected): ?>
             <a class="text-white font-first-font font-extrabold" href="./connexion.php">
-              <div class="max-sm:text-sm max-sm:w-0 max-sm:min-w-[100px] max-sm:border-[0.3rem] btn btn-right">
+              <div class="text-sm max-sm:w-0 max-sm:min-w-[100px] max-sm:border-[0.3rem] btn btn-right">
                 Connexion
               </div>
               
             </a>
           <?php else: ?>
             <a class="text-white font-first-font font-extrabold" href="./deconnexion.php">
-              <div class="btn btn-right">
+              <div class="text-sm max-sm:w-0 max-sm:min-w-[100px] max-sm:border-[0.3rem] btn btn-right">
                 Déconnexion
               </div>
             </a>

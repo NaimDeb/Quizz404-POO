@@ -9,9 +9,9 @@ if(isset($_SESSION["user"])){
 ?>
 
 
-<div class="pt-[250px] flex flex-col gap-9 text-center w-100 items-center">
+<div class="pt-[250px] max-sm:pt-[100px] flex flex-col gap-9 text-center w-100 items-center">
 
-  <h1 class="font-first-font text-5xl">Bienvenue sur QUIZ405 inscrivez vous ou connecter vous pour jouer !</h1>
+  <h1 class="font-first-font text-5xl max-sm:text-2xl">Bienvenue sur QUIZ405 inscrivez vous ou connecter vous pour jouer !</h1>
 
 
   <div class="flex gap-4  w-full justify-center text-center">
