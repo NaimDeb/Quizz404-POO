@@ -87,7 +87,7 @@ class QCMManager
             </div>
         <?php endforeach; ?>
     </div>
-    <button id="next-button" class="hidden btn-lite hover:scale-110 my-4 px-4 py-2 bg-gray-500 text-white rounded-lg transition-all hover:bg-gray-700 max-sm:w-full md:w-auto">
+    <button id="next-button" class="hidden max-md:absolute max-md:z-99 max-md:bottom-2 max-md:left1/2 max-md:-translate-x-1/2 btn-lite hover:scale-110 my-4 px-4 py-2 bg-gray-500 text-white rounded-lg transition-all hover:bg-gray-700 max-sm:w-full md:w-auto">
     Question suivante
     </button>
 </div>
