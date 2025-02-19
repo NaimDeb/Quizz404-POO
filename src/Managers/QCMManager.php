@@ -86,10 +86,10 @@ class QCMManager
                 </p>
             </div>
         <?php endforeach; ?>
-        <button id="next-button" class="hidden btn-lite hover:scale-110 my-4 px-4 py-2 bg-gray-500 text-white rounded-lg transition-all hover:bg-gray-700 max-sm:w-full md:w-auto">
-        Question suivante
-        </button>
     </div>
+    <button id="next-button" class="hidden btn-lite hover:scale-110 my-4 px-4 py-2 bg-gray-500 text-white rounded-lg transition-all hover:bg-gray-700 max-sm:w-full md:w-auto">
+    Question suivante
+    </button>
 </div>
 
 
