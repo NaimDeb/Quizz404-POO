@@ -20,9 +20,10 @@ class QCMManager
         <?php
         foreach ($allQCM as $QCM) {
         ?>
-            <a class="size-[300px] hover:scale-110 transition-all border-black border-[2px] shrink-0" href="quizz.php?id=<?= htmlspecialchars($QCM->getId()) ?>">
-                <img src="<?= htmlspecialchars($QCM->getImg()) ?>" alt="">
-            </a>
+<a class="size-[300px] hover:scale-110 transition-all border-black border-[2px] shrink-0 flex justify-center items-center" href="quizz.php?id=<?= htmlspecialchars($QCM->getId()) ?>">
+    <img class="bg-cover size-full" src="<?= htmlspecialchars($QCM->getImg()) ?>" alt="">
+</a>
+
         <?php
         }
         ?>
