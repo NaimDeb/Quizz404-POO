@@ -120,9 +120,14 @@ async function handleClickNext() {
 
             // Afficher le score final avec l'ancien score
             questionContainer.innerHTML = `
+            <div class="flex flex-col gap-3">
                 <h3 class="text-2xl font-semibold text-gray-700 mb-4">Quiz Fini !</h3>
                 <p class="text-lg text-gray-600 mt-4">Votre score final : <span class="font-bold"> ${totalScore}</span> (Ancien score : <span class="font-bold">${oldScore}</span>)</p>
                 <p class="text-lg text-gray-600 mt-4"> <span class="font-bold"> ${score} </span> / ${questionContainer.children.length} bonnes réponses</p>
+                <a href="./index.php" class="btn-lite hover:scale-110 mt-8 px-4 py-2 bg-gray-500 text-white rounded-lg transition-all hover:bg-gray-700 max-sm:w-full md:w-auto">
+                Retour aux quizz
+                </a>
+            </div>
             `;
         })
         .catch(error => {
